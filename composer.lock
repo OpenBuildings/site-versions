@@ -1,0 +1,774 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+    ],
+    "hash": "7e6effcd852552e921c130bf8ef4857f",
+    "packages": [
+        {
+            "name": "composer/installers",
+            "version": "v1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/composer/installers.git",
+                "reference": "b3bd071ea114a57212c75aa6a2eef5cfe0cc798f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/composer/installers/zipball/b3bd071ea114a57212c75aa6a2eef5cfe0cc798f",
+                "reference": "b3bd071ea114a57212c75aa6a2eef5cfe0cc798f",
+                "shasum": ""
+            },
+            "replace": {
+                "shama/baton": "*"
+            },
+            "require-dev": {
+                "composer/composer": "1.0.*@dev",
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "composer-installer",
+            "extra": {
+                "class": "Composer\\Installers\\Installer",
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Composer\\Installers\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kyle Robinson Young",
+                    "email": "kyle@dontkry.com",
+                    "homepage": "https://github.com/shama",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A multi-framework Composer library installer",
+            "homepage": "http://composer.github.com/installers/",
+            "keywords": [
+                "TYPO3 CMS",
+                "TYPO3 Flow",
+                "TYPO3 Neos",
+                "agl",
+                "cakephp",
+                "codeigniter",
+                "drupal",
+                "fuelphp",
+                "installer",
+                "joomla",
+                "kohana",
+                "laravel",
+                "li3",
+                "lithium",
+                "mako",
+                "modulework",
+                "phpbb",
+                "ppi",
+                "silverstripe",
+                "symfony",
+                "wordpress",
+                "zend"
+            ],
+            "time": "2013-08-20 04:37:09"
+        },
+        {
+            "name": "desarrolla2/cache",
+            "version": "v1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/desarrolla2/Cache.git",
+                "reference": "8b6719695ac68380f11e89920ce456665079391e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/desarrolla2/Cache/zipball/8b6719695ac68380f11e89920ce456665079391e",
+                "reference": "8b6719695ac68380f11e89920ce456665079391e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "desarrolla2/timer": "dev-master",
+                "raulfraile/ladybug": "master-dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Desarrolla2\\Cache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel González",
+                    "homepage": "http://desarrolla2.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Provides an cache interface for several adapters (Apc, File, Mongo, Memcached, Mysql, ... )",
+            "homepage": "https://github.com/desarrolla2/Cache/blob/master/README.md",
+            "keywords": [
+                "apc",
+                "cache",
+                "file",
+                "memcached",
+                "mongo",
+                "mysql",
+                "redis"
+            ],
+            "time": "2013-07-10 12:22:00"
+        },
+        {
+            "name": "facebook/php-sdk",
+            "version": "v3.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/facebook/facebook-php-sdk.git",
+                "reference": "bf99924386be074da30a8e9d6bbcb49d3333da12"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/facebook/facebook-php-sdk/zipball/bf99924386be074da30a8e9d6bbcb49d3333da12",
+                "reference": "bf99924386be074da30a8e9d6bbcb49d3333da12",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache2"
+            ],
+            "authors": [
+                {
+                    "name": "Facebook",
+                    "homepage": "https://github.com/facebook/facebook-php-sdk/contributors"
+                }
+            ],
+            "description": "Facebook PHP SDK",
+            "homepage": "https://github.com/facebook/facebook-php-sdk",
+            "keywords": [
+                "facebook",
+                "sdk"
+            ],
+            "time": "2013-01-15 21:37:15"
+        },
+        {
+            "name": "openbuildings/emp",
+            "version": "0.1.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/OpenBuildings/emp.git",
+                "reference": "84ce64e863a0cb1f73e88b0f864fb32b21cbee57"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/OpenBuildings/emp/zipball/84ce64e863a0cb1f73e88b0f864fb32b21cbee57",
+                "reference": "84ce64e863a0cb1f73e88b0f864fb32b21cbee57",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Openbuildings\\Emp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Kerin",
+                    "email": "ivan@openbuildings.com",
+                    "homepage": "https://github.com/OpenBuildings/jam",
+                    "role": "Author"
+                },
+                {
+                    "name": "Haralan Dobrev",
+                    "email": "hdobrev@despark.com",
+                    "role": "Author"
+                }
+            ],
+            "description": "Payments for eMerchantPay (EMP) https://www.emerchantpay.com/",
+            "homepage": "https://github.com/OpenBuildings/emp",
+            "keywords": [
+                "EMP",
+                "credit cards",
+                "eMerchantPay",
+                "money",
+                "payments"
+            ],
+            "time": "2013-10-31 15:07:39"
+        },
+        {
+            "name": "openbuildings/flex-storage",
+            "version": "v0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/OpenBuildings/flex-storage.git",
+                "reference": "176bdf7dd4f8544c662afdd829331f80a5c04db9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/OpenBuildings/flex-storage/zipball/176bdf7dd4f8544c662afdd829331f80a5c04db9",
+                "reference": "176bdf7dd4f8544c662afdd829331f80a5c04db9",
+                "shasum": ""
+            },
+            "require": {
+                "rackspace/php-opencloud": "1.5.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Flex\\Storage\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Kerin",
+                    "email": "ivan@openbuildings.com",
+                    "homepage": "https://github.com/OpenBuildings/jam",
+                    "role": "Author"
+                }
+            ],
+            "description": "Flexible storage provider for files (rackspace, aws, ftp, local)",
+            "time": "2013-08-14 07:24:02"
+        },
+        {
+            "name": "openbuildings/jam",
+            "version": "0.4.29",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/OpenBuildings/jam.git",
+                "reference": "6f921136441c1635ab2705980948431ceab92583"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/OpenBuildings/jam/zipball/6f921136441c1635ab2705980948431ceab92583",
+                "reference": "6f921136441c1635ab2705980948431ceab92583",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "*",
+                "openbuildings/flex-storage": "0.1.*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "openbuildings/kohana-test-bootsrap": "0.1.*"
+            },
+            "suggest": {
+                "openbuildings/jam-auth": "A Kohana Auth implementation for Jam, with services",
+                "openbuildings/jam-closuretable": "Closuretable implementation for Jam ORM",
+                "openbuildings/jam-monetary": "Convert and format currencies and amounts with a Jam field",
+                "openbuildings/jam-tart": "Jam admin builder"
+            },
+            "type": "kohana-module",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Kerin",
+                    "email": "ivan@openbuildings.com",
+                    "homepage": "https://github.com/OpenBuildings/jam",
+                    "role": "Author"
+                }
+            ],
+            "description": "Small but feature rich ORM, has extensible models and builders, baked in upload functionality, supporting multiple backends (rackspace, ftp), polymorphic associations, form builders, nested forms, validators",
+            "homepage": "https://github.com/OpenBuildings/jam",
+            "keywords": [
+                "database",
+                "form builder",
+                "kohana",
+                "orm",
+                "upload",
+                "validation"
+            ],
+            "time": "2013-10-28 07:56:53"
+        },
+        {
+            "name": "openbuildings/jam-auth",
+            "version": "0.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/OpenBuildings/jam-auth.git",
+                "reference": "88097b132467b64e2985bc67ca218e162a33d7c1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/OpenBuildings/jam-auth/zipball/88097b132467b64e2985bc67ca218e162a33d7c1",
+                "reference": "88097b132467b64e2985bc67ca218e162a33d7c1",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "*",
+                "facebook/php-sdk": "3.2.*",
+                "openbuildings/jam": "0.4.*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "openbuildings/kohana-test-bootsrap": "0.1.*"
+            },
+            "type": "kohana-module",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Kerin",
+                    "email": "ivan@openbuildings.com",
+                    "homepage": "https://github.com/OpenBuildings/jam",
+                    "role": "Author"
+                }
+            ],
+            "description": "This is a Kohana Auth driver, for Jam",
+            "homepage": "https://github.com/OpenBuildings/jam-auth",
+            "keywords": [
+                "Authentication",
+                "auth",
+                "facebook",
+                "jam",
+                "kohana",
+                "login"
+            ],
+            "time": "2013-09-18 07:28:00"
+        },
+        {
+            "name": "openbuildings/jam-closuretable",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/OpenBuildings/jam-closuretable.git",
+                "reference": "b4966d8d8d805a3ebb688a8a60b73b0ce6b81e02"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/OpenBuildings/jam-closuretable/zipball/b4966d8d8d805a3ebb688a8a60b73b0ce6b81e02",
+                "reference": "b4966d8d8d805a3ebb688a8a60b73b0ce6b81e02",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "*",
+                "openbuildings/jam": "0.4.*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "openbuildings/kohana-test-bootsrap": "0.1.*"
+            },
+            "type": "kohana-module",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Kerin",
+                    "email": "ivan@openbuildings.com",
+                    "homepage": "https://github.com/OpenBuildings/jam",
+                    "role": "Author"
+                }
+            ],
+            "description": "Closuretable behavior",
+            "homepage": "https://github.com/OpenBuildings/purchases",
+            "keywords": [
+                "closuretable",
+                "jam",
+                "kohana",
+                "nesting",
+                "structure",
+                "tree"
+            ],
+            "time": "2013-09-02 12:41:12"
+        },
+        {
+            "name": "openbuildings/jam-locations",
+            "version": "0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/OpenBuildings/jam-locations.git",
+                "reference": "1b3183467f376f99451cfdc7445c07b11a83d0cf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/OpenBuildings/jam-locations/zipball/1b3183467f376f99451cfdc7445c07b11a83d0cf",
+                "reference": "1b3183467f376f99451cfdc7445c07b11a83d0cf",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "*",
+                "openbuildings/jam-closuretable": "0.1.*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "ext-geoip": "*",
+                "openbuildings/environment-backup": "0.1.*",
+                "openbuildings/kohana-test-bootsrap": "0.1.*"
+            },
+            "type": "kohana-module",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Kerin",
+                    "email": "ikerin@gmail.com",
+                    "homepage": "http://www.openbuildings.com",
+                    "role": "Author"
+                }
+            ],
+            "description": "Geoip and IP integration",
+            "homepage": "https://github.com/OpenBuildings/jam-locations",
+            "keywords": [
+                "city",
+                "country",
+                "geoip",
+                "kohana",
+                "location"
+            ],
+            "time": "2013-09-26 07:02:11"
+        },
+        {
+            "name": "openbuildings/jam-monetary",
+            "version": "0.1.16",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/OpenBuildings/jam-monetary.git",
+                "reference": "190dfe42d280ed089c4cc4cb357394e1d59e0329"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/OpenBuildings/jam-monetary/zipball/190dfe42d280ed089c4cc4cb357394e1d59e0329",
+                "reference": "190dfe42d280ed089c4cc4cb357394e1d59e0329",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "*",
+                "openbuildings/jam": "0.4.*",
+                "openbuildings/monetary": "0.4.*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "openbuildings/kohana-test-bootsrap": "0.1.*"
+            },
+            "type": "kohana-module",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Kerin",
+                    "email": "ivan@openbuildings.com",
+                    "homepage": "https://github.com/OpenBuildings/jam",
+                    "role": "Author"
+                }
+            ],
+            "description": "A Jam Field to transparently use 'monetary' as a jam field, and have currency exchange arithmetic out of the box",
+            "homepage": "https://github.com/OpenBuildings/jam-monetary",
+            "keywords": [
+                "exchange",
+                "jam",
+                "kohana",
+                "monetary",
+                "money",
+                "price"
+            ],
+            "time": "2013-10-29 16:40:22"
+        },
+        {
+            "name": "openbuildings/monetary",
+            "version": "0.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/OpenBuildings/monetary.git",
+                "reference": "f05bc74cadc6d850b199705f10ee590aaf3bbd59"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/OpenBuildings/monetary/zipball/f05bc74cadc6d850b199705f10ee590aaf3bbd59",
+                "reference": "f05bc74cadc6d850b199705f10ee590aaf3bbd59",
+                "shasum": ""
+            },
+            "require": {
+                "desarrolla2/cache": "1.6.*",
+                "ext-curl": "*",
+                "ext-simplexml": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~3.7.24"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "OpenBuildings\\Monetary\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Kerin",
+                    "email": "ivan@openbuildings.com",
+                    "homepage": "https://github.com/OpenBuildings/jam",
+                    "role": "Author"
+                },
+                {
+                    "name": "Haralan Dobrev",
+                    "email": "hdobrev@despark.com",
+                    "role": "Author"
+                },
+                {
+                    "name": "Yasen Yanev",
+                    "email": "yasen@openbuildings.com",
+                    "role": "Author"
+                }
+            ],
+            "description": "Useful tool for formatting and converting currencies",
+            "homepage": "https://github.com/OpenBuildings/monetary",
+            "keywords": [
+                "ECB",
+                "conversion",
+                "currencies",
+                "exchange",
+                "monetary",
+                "money",
+                "yahoo"
+            ],
+            "time": "2013-10-28 11:21:15"
+        },
+        {
+            "name": "openbuildings/purchases",
+            "version": "0.3.22",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/OpenBuildings/purchases.git",
+                "reference": "90f33a7b5c2a98dc381dff31cf3b7c0b427722bb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/OpenBuildings/purchases/zipball/90f33a7b5c2a98dc381dff31cf3b7c0b427722bb",
+                "reference": "90f33a7b5c2a98dc381dff31cf3b7c0b427722bb",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "*",
+                "openbuildings/emp": "0.1.*",
+                "openbuildings/jam": "0.4.*",
+                "openbuildings/jam-auth": "0.2.*",
+                "openbuildings/jam-locations": "0.1.*",
+                "openbuildings/jam-monetary": "0.1.*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "openbuildings/environment-backup": "0.1.*",
+                "openbuildings/kohana-test-bootsrap": "0.1.*",
+                "openbuildings/paypal": "0.3.*",
+                "openbuildings/phpunit-spiderling": "0.1.*",
+                "paypal/rest-api-sdk-php": "0.7.*"
+            },
+            "suggest": {
+                "openbuildings/paypal": "Require this package if you need to use PayPal payments with ChainedPayments",
+                "openbuildings/promotions": "Extends purchases functionality with promotions and gift cards",
+                "openbuildings/shipping": "Extends purchases functionality with shipping and delivery",
+                "paypal/rest-api-sdk-php": "Require this package if you need to use PayPal payments with REST API"
+            },
+            "type": "kohana-module",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Kerin",
+                    "email": "ivan@openbuildings.com",
+                    "homepage": "https://github.com/OpenBuildings/jam",
+                    "role": "Author"
+                },
+                {
+                    "name": "Haralan Dobrev",
+                    "email": "hkdobrev@gmail.com",
+                    "homepage": "http://hkdobrev.blogspot.com",
+                    "role": "Author"
+                }
+            ],
+            "description": "Multi Store Purchases",
+            "homepage": "https://github.com/OpenBuildings/purchases",
+            "keywords": [
+                "basket",
+                "cart",
+                "jam",
+                "kohana",
+                "purchase",
+                "store"
+            ],
+            "time": "2013-11-05 12:00:59"
+        },
+        {
+            "name": "rackspace/php-opencloud",
+            "version": "V1.5.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rackspace/php-opencloud.git",
+                "reference": "f4c4bbbae8b108c572b346a7cd350c62122451d5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rackspace/php-opencloud/zipball/f4c4bbbae8b108c572b346a7cd350c62122451d5",
+                "reference": "f4c4bbbae8b108c572b346a7cd350c62122451d5",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "lib/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Glen Campbell",
+                    "email": "glen.campbell@rackspace.com"
+                },
+                {
+                    "name": "Jamie Hannaford",
+                    "email": "jamie.hannaford@rackspace.com"
+                }
+            ],
+            "description": "Rackspace open cloud php library",
+            "keywords": [
+                "cloudfiles",
+                "opencloud"
+            ],
+            "time": "2013-08-01 16:12:19"
+        }
+    ],
+    "packages-dev": [
+        {
+            "name": "openbuildings/environment-backup",
+            "version": "0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/OpenBuildings/environment-backup.git",
+                "reference": "382d388ec2a9d9c414965a20347671328ab0b1f2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/OpenBuildings/environment-backup/zipball/382d388ec2a9d9c414965a20347671328ab0b1f2",
+                "reference": "382d388ec2a9d9c414965a20347671328ab0b1f2",
+                "shasum": ""
+            },
+            "require-dev": {
+                "openbuildings/kohana-test-bootsrap": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Openbuildings\\EnvironmentBackup\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Kerin",
+                    "email": "ivan@openbuildings.com",
+                    "homepage": "https://github.com/OpenBuildings/jam",
+                    "role": "Author"
+                }
+            ],
+            "description": "Backup/restore environment variables: globals, static vars, configs",
+            "time": "2013-07-24 07:26:52"
+        },
+        {
+            "name": "openbuildings/kohana-test-bootsrap",
+            "version": "0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/OpenBuildings/kohana-test-bootstrap.git",
+                "reference": "57c9cae9bd97edbe58d1c41c35c499c7d54f4030"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/OpenBuildings/kohana-test-bootstrap/zipball/57c9cae9bd97edbe58d1c41c35c499c7d54f4030",
+                "reference": "57c9cae9bd97edbe58d1c41c35c499c7d54f4030",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Kerin",
+                    "email": "ivan@openbuildings.com",
+                    "homepage": "https://github.com/OpenBuildings/jam",
+                    "role": "Author"
+                }
+            ],
+            "description": "Kohana core classes repackaged with composer, used to test modules",
+            "time": "2013-10-01 08:57:54"
+        }
+    ],
+    "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": [
+
+    ],
+    "platform": {
+        "php": ">=5.3.0"
+    },
+    "platform-dev": [
+
+    ]
+}
