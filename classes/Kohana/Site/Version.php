@@ -27,9 +27,13 @@ class Kohana_Site_Version {
 
 	public static function current_version_name()
 	{
-		foreach (static::versions() as $version_name => $params) 
+		$versions = static::versions();
+		
+		foreach ($versions as $version_name => $params) 
 		{
-			if ($_SERVER['HTTP_HOST'] == $params['domain'])
+			$domains = Arr::extract($params, array('domain', 'secure_domain'));
+
+			if (array_search($_SERVER['HTTP_HOST'], $domains) !== FALSE)
 			{
 				return $version_name;
 			}

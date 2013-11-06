@@ -12,10 +12,10 @@ class Site_VersionTest extends Testcase_Extended {
 				'example.com',
 				array(
 					'normal' => array(
-						'domains' => 'example.com',
+						'domain' => 'example.com',
 					),
 					'whiteversion' => array(
-						'domains' => 'whiteversion.example.com',
+						'domain' => 'whiteversion.example.com',
 					),
 				),
 				'normal',
@@ -25,10 +25,10 @@ class Site_VersionTest extends Testcase_Extended {
 				'whiteversion.example.com',
 				array(
 					'whiteversion' => array(
-						'domains' => 'whiteversion.example.com',
+						'domain' => 'whiteversion.example.com',
 					),
 					'normal' => array(
-						'domains' => 'example.com',
+						'domain' => 'example.com',
 					),
 				),
 				'whiteversion',
@@ -38,10 +38,10 @@ class Site_VersionTest extends Testcase_Extended {
 				'test.example.com',
 				array(
 					'whiteversion' => array(
-						'domains' => 'whiteversion.example.com',
+						'domain' => 'whiteversion.example.com',
 					),
 					'normal' => array(
-						'domains' => 'example.com',
+						'domain' => 'example.com',
 					),
 				),
 				'normal',
@@ -51,7 +51,8 @@ class Site_VersionTest extends Testcase_Extended {
 				'test.example.com',
 				array(
 					'whiteversion' => array(
-						'domains' => array('whiteversion.example.com', 'test.example.com'),
+						'domain' => 'whiteversion.example.com',
+						'secure_domain' => 'test.example.com',
 					),
 					'normal' => array(
 						'domains' => 'example.com',
@@ -214,25 +215,25 @@ class Site_VersionTest extends Testcase_Extended {
 	}
 
 	/**
-	 * @covers Site_Version::domains
+	 * @covers Site_Version::domain
 	 */
-	public function test_domains()
+	public function test_domain()
 	{
 		$this->env->backup_and_set(array(
 			'site-versions.versions' => array(
 				'test' => array(
-					'domains' => 'test.example.com',
+					'domain' => 'test.example.com',
 				),
 			),
 		));
 
 		$version = new Site_Version('test');
 
-		$domains = $version->domains();
+		$domain = $version->domain();
 
-		$expceted = array('test.example.com');
+		$expceted = 'test.example.com';
 
-		$this->assertEquals($expceted, $domains);
+		$this->assertEquals($expceted, $domain);
 	}
 
 	public function data_protocol()
@@ -267,8 +268,8 @@ class Site_VersionTest extends Testcase_Extended {
 	public function data_base()
 	{
 		return array(
-			array(array('protocol' => 'https', 'domains' => 'example.com'), 'https://example.com'),
-			array(array('protocol' => 'http', 'domains' => array('test.example.com', 'whitelable.example.com')), 'http://test.example.com'),
+			array(array('protocol' => 'https', 'domain' => 'example.com'), 'https://example.com'),
+			array(array('protocol' => 'http', 'domain' => 'test.example.com'), 'http://test.example.com'),
 		);
 	}
 
