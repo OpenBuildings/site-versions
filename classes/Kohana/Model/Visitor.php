@@ -109,24 +109,36 @@ class Kohana_Model_Visitor extends Jam_Model {
 			));
 	}
 
+	public function build_purchase()
+	{
+		$this->build('purchase', array(
+			'currency' => $this->currency,
+			'billing_address' => array(
+				'country' => $this->country,
+			)
+		));
+
+		$this->meta()->events()->trigger('model.build_purchase', $this);
+
+		return $this->purchase;
+	}
+
 	public function purchase()
 	{
 		if ($this->user) 
 		{
+			if ( ! $this->user->current_purchase) 
+			{
+				$this->user->current_purchase = $this->build_purchase();	
+			}
+
 			return $this->user->current_purchase;
 		}
 		else
 		{
 			if ( ! $this->purchase) 
 			{
-				$this->build('purchase', array(
-					'currency' => $this->currency,
-					'billing_address' => array(
-						'country' => $this->country,
-					)
-				));
-
-				$this->meta()->events()->trigger('model.build_purchase', $this);
+				$this->purchase = $this->build_purchase();	
 			}
 
 			return $this->purchase;
