@@ -23,6 +23,9 @@ class Kohana_Model_Visitor extends Jam_Model {
 			{
 				$user->visitor = $visitor;
 				$user->current_purchase = $visitor->purchase;
+				
+				$visitor->meta()->events()->trigger('model.user_set', $visitor);
+
 				$user->save();
 			}
 			
