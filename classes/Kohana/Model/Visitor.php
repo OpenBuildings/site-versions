@@ -99,7 +99,7 @@ class Kohana_Model_Visitor extends Jam_Model {
 			->associations(array(
 				'user' => Jam::association('belongsto', array('inverse_of' => 'visitor')),
 				'country' => Jam::association('belongsto', array('foreign_key' => 'country_id', 'foreign_model' => 'location')),
-				'purchase' => Jam::association('belongsto'),
+				'purchase' => Jam::association('belongsto', array('inverse_of' => 'current_visitor')),
 			))
 
 			->fields(array(
@@ -120,6 +120,8 @@ class Kohana_Model_Visitor extends Jam_Model {
 		));
 
 		$this->meta()->events()->trigger('model.build_purchase', $this);
+
+		$this->purchase->current_visitor = $this;
 
 		return $this->purchase;
 	}
