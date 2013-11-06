@@ -22,7 +22,6 @@ class Kohana_Model_Visitor extends Jam_Model {
 			if ($user AND ! $visitor->user)
 			{
 				$user->visitor = $visitor;
-				$user->current_purchase = $visitor->purchase;
 				
 				$visitor->meta()->events()->trigger('model.user_set', $visitor);
 
@@ -83,7 +82,16 @@ class Kohana_Model_Visitor extends Jam_Model {
 		$data = json_decode($data, TRUE);
 		
 		$this->_meta = Jam::meta($this);
-		$this->_original = (array) $data;
+		$this->_loaded = isset($data['id']);
+		if ($this->_loaded) 
+		{
+			$this->_original = (array) $data;
+		}
+		else
+		{
+			$this->_original = $this->meta()->defaults();
+			$this->_changed = (array) $data;
+		}
 	}
 
 	/**
@@ -112,7 +120,6 @@ class Kohana_Model_Visitor extends Jam_Model {
 	public function build_purchase()
 	{
 		$this->build('purchase', array(
-			'current_user' => $this->user,
 			'currency' => $this->currency,
 			'billing_address' => array(
 				'country' => $this->country,
@@ -128,23 +135,11 @@ class Kohana_Model_Visitor extends Jam_Model {
 
 	public function purchase()
 	{
-		if ($this->user) 
+		if ( ! $this->purchase) 
 		{
-			if ( ! $this->user->current_purchase) 
-			{
-				return $this->build_purchase();	
-			}
-
-			return $this->user->current_purchase;
+			return $this->build_purchase();
 		}
-		else
-		{
-			if ( ! $this->purchase) 
-			{
-				return $this->build_purchase();
-			}
 
-			return $this->purchase;
-		}
+		return $this->purchase;
 	}
 }

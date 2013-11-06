@@ -93,7 +93,7 @@ class Kohana_Site_Version {
 	public function load_visitor($token)
 	{
 		$visitor = Jam::all('visitor')->where('token', '=', $token)->first();
-
+		
 		if ($visitor)
 		{
 			Model_Visitor::session($visitor);
@@ -111,7 +111,8 @@ class Kohana_Site_Version {
 			return array();
 
 		$visitor = Model_Visitor::load();
-		if ( ! $visitor->loaded()) 
+
+		if ( ! $visitor->loaded())
 		{
 			$visitor->save();
 		}
@@ -136,7 +137,7 @@ class Kohana_Site_Version {
 
 	public function site($url)
 	{
-		return $this->base().$url;
+		return $this->base().'/'.ltrim($url, '/');
 	}
 
 	public function secure_domain()
@@ -146,12 +147,12 @@ class Kohana_Site_Version {
 
 	public function secure_base()
 	{
-		return 'https://'.$this->domain();
+		return 'https://'.$this->secure_domain();
 	}
 
-	public function secure_site()
+	public function secure_site($url)
 	{
-		return $this->secure_base().$url;
+		return $this->secure_base().'/'.ltrim($url, '/');
 	}
 
 	public function redirect_to_secure()

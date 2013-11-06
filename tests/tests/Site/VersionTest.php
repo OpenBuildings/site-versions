@@ -71,12 +71,33 @@ class Site_VersionTest extends Testcase_Extended {
 	{
 		$this->env->backup_and_set(array(
 			'HTTP_HOST' => $host,
-			'site-versions.versions' => $versions,
 		));
 
-		$version = Site_Version::current_version_name();
+		$class = $this->getMockClass('Site_Version', array('versions'));
+
+		$class::staticExpects($this->once())
+			->method('versions')
+			->will($this->returnValue($versions));
+
+		$version = $class::current_version_name();
 
 		$this->assertEquals($expceted, $version);
+	}
+
+	/**
+	 * @covers Site_Version::versions
+	 */
+	public function test_versions()
+	{
+		$expceted = array('test1' => array('test1'), 'test2' => array('test2'));
+
+		$this->env->backup_and_set(array(
+			'site-versions.versions' => $expceted,
+		));
+
+		$versions = Site_Version::versions();
+
+		$this->assertEquals($expceted, $versions);
 	}
 
 	/**
@@ -119,7 +140,6 @@ class Site_VersionTest extends Testcase_Extended {
 		$this->assertInstanceOf('Site_Version', $instance4);
 		$this->assertEquals(array('config2'), $instance4->config());
 		$this->assertEquals('test2', $instance4->name());
-
 	}
 
 	/**

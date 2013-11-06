@@ -17,7 +17,7 @@ class Kohana_Jam_Behavior_Visitor_Purchase extends Jam_Behavior {
 
 		$meta
 			->association('current_visitor', Jam::association('hasone', array(
-				'foreign_model' => 'user', 
+				'foreign_model' => 'visitor', 
 				'inverse_of' => 'purchase',
 				'foreign_key' => 'purchase_id',
 			)));
