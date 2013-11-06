@@ -28,7 +28,7 @@ class Kohana_Site_Version {
 	public static function current_version_name()
 	{
 		$versions = static::versions();
-		
+
 		foreach ($versions as $version_name => $params) 
 		{
 			$domains = Arr::extract($params, array('domain', 'secure_domain'));
@@ -103,16 +103,6 @@ class Kohana_Site_Version {
 	public function param($name)
 	{
 		return $this->config('params.'.$name);
-	}
-
-	public function google_campaing_query()
-	{
-		if (array_key_exists('utm_source', $_GET))
-			return array();
-
-		$google_campaign = $this->config('google_campain', array());
-
-		return $google_campaign;
 	}
 
 	public function visitor_params()
