@@ -2,25 +2,34 @@
 
 class Kohana_Site_Version {
 
-	protected static $instance;
+	protected static $instances = array();
 
-	public static function instance()
+	public static function instance($name = NULL)
 	{
-		if (static::$instance === NULL) 
+		if ($name === NULL) 
 		{
-			static::$instance = new Site_Version(static::current_version_name());
+			$name = 'current';
 		}
 
-		return static::$instance;
+		if ( ! isset(static::$instances[$name])) 
+		{
+			$version_name = ($name == 'current') ? static::current_version_name() : $name;
+			static::$instances[$version_name] = static::$instances[$name] = new Site_Version($version_name);
+		}
+
+		return static::$instances[$name];
+	}
+
+	public static function versions()
+	{
+		return Kohana::$config->load('site-versions.versions');	
 	}
 
 	public static function current_version_name()
 	{
-		$versions = Kohana::$config->load('site-versions.versions');
-
-		foreach ($versions as $version_name => $params) 
+		foreach (static::versions() as $version_name => $params) 
 		{
-			if (in_array($_SERVER['HTTP_HOST'], (array) $params['domains']))
+			if ($_SERVER['HTTP_HOST'] == $params['domain'])
 			{
 				return $version_name;
 			}
@@ -92,11 +101,6 @@ class Kohana_Site_Version {
 		return $this->config('params.'.$name);
 	}
 
-	public function domains()
-	{
-		return (array) $this->config('domains', array());
-	}
-
 	public function google_campaing_query()
 	{
 		if (array_key_exists('utm_source', $_GET))
@@ -121,6 +125,11 @@ class Kohana_Site_Version {
 		return array('_SV_VISITOR_TOKEN' => $visitor->token);
 	}
 
+	public function domain()
+	{
+		return $this->config('domain');
+	}
+
 	public function protocol()
 	{
 		return $this->config('protocol', 'http');
@@ -128,7 +137,34 @@ class Kohana_Site_Version {
 
 	public function base()
 	{
-		$domains = $this->domains();
-		return $this->protocol().'://'.reset($domains);
+		return $this->protocol().'://'.$this->domain();
+	}
+
+	public function site($url)
+	{
+		return $this->base().$url;
+	}
+
+	public function secure_domain()
+	{
+		return $this->config('secure_domain', $this->domain());
+	}
+
+	public function secure_base()
+	{
+		return 'https://'.$this->domain();
+	}
+
+	public function secure_site()
+	{
+		return $this->secure_base().$url;
+	}
+
+	public function redirect_to_secure()
+	{
+		if ($_SERVER['HTTP_HOST'] !== $this->secure_domain())
+		{
+			HTTP::redirect($this->secure_site(Request::initial()->uri()).URL::query($this->visitor_params(), FALSE));
+		}
 	}
 }

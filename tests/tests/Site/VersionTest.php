@@ -89,6 +89,7 @@ class Site_VersionTest extends Testcase_Extended {
 		$this->env->backup_and_set(array(
 			'site-versions.versions' => array(
 				'test' => array('config'),
+				'test2' => array('config2'),
 			),
 		));
 
@@ -107,6 +108,17 @@ class Site_VersionTest extends Testcase_Extended {
 		$instance2 = $class::instance();
 
 		$this->assertSame($instance, $instance2);
+
+		$instance3 = $class::instance('test');
+
+		$this->assertSame($instance, $instance3);
+
+		$instance4 = $class::instance('test2');
+
+		$this->assertInstanceOf('Site_Version', $instance4);
+		$this->assertEquals(array('config2'), $instance4->config());
+		$this->assertEquals('test2', $instance4->name());
+
 	}
 
 	/**
