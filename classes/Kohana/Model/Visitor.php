@@ -112,6 +112,7 @@ class Kohana_Model_Visitor extends Jam_Model {
 	public function build_purchase()
 	{
 		$this->build('purchase', array(
+			'current_user' => $this->user,
 			'currency' => $this->currency,
 			'billing_address' => array(
 				'country' => $this->country,
@@ -129,7 +130,7 @@ class Kohana_Model_Visitor extends Jam_Model {
 		{
 			if ( ! $this->user->current_purchase) 
 			{
-				$this->user->current_purchase = $this->build_purchase();	
+				return $this->build_purchase();	
 			}
 
 			return $this->user->current_purchase;
@@ -138,7 +139,7 @@ class Kohana_Model_Visitor extends Jam_Model {
 		{
 			if ( ! $this->purchase) 
 			{
-				$this->purchase = $this->build_purchase();	
+				return $this->build_purchase();
 			}
 
 			return $this->purchase;

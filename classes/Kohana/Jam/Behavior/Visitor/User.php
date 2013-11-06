@@ -6,7 +6,7 @@
  * @copyright  (c) 2013 OpenBuildings Ltd.
  * @license    http://spdx.org/licenses/BSD-3-Clause
  */
-class Kohana_Jam_Behavior_Visitor_Defaults extends Jam_Behavior {
+class Kohana_Jam_Behavior_Visitor_User extends Jam_Behavior {
 
 	/**
 	 * @codeCoverageIgnore
@@ -16,12 +16,6 @@ class Kohana_Jam_Behavior_Visitor_Defaults extends Jam_Behavior {
 		parent::initialize($meta, $name);
 
 		$meta
-			->events()
-				->bind('model.create_session', array($this, 'set_new_token'));
-	}
-
-	public function set_new_token(Model_Visitor $visitor)
-	{
-		$visitor->token = uniqid();
+			->association('visitor', Jam::association('hasone', array('inverse_of' => 'user')));
 	}
 }
