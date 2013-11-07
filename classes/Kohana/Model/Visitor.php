@@ -121,6 +121,7 @@ class Kohana_Model_Visitor extends Jam_Model {
 	{
 		$this->build('purchase', array(
 			'currency' => $this->currency,
+			'creator' => $this->user,
 			'billing_address' => array(
 				'country' => $this->country,
 			)
