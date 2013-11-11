@@ -218,6 +218,12 @@ class Kohana_Site_Version {
 		return $this->config('params.'.$name);
 	}
 
+	public function set_param($name, $value)
+	{
+		$this->config['params'][$name] = $value;
+		return $this;
+	}
+
 	/**
 	 * Get the query parameters required to transport current visitor accross domains
 	 * @return array 
