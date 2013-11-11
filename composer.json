@@ -15,7 +15,9 @@
 	"require": {
 		"php": ">=5.3.0",
 		"composer/installers": "*",
-		"openbuildings/purchases": "0.3.*"
+		"openbuildings/jam-auth": "0.2.*",
+		"openbuildings/jam-monetary": "0.1.*",
+		"openbuildings/jam-locations": "0.1.*"
 	},
 	"require-dev": {
 		"openbuildings/kohana-test-bootsrap": "0.1.*",

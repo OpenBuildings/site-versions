@@ -1,10 +1,18 @@
 <?php defined('SYSPATH') OR die('No direct script access.');
 
+/**
+ * @package    openbuildings\site-versions
+ * @author     Ivan Kerin <ikerin@gmail.com>
+ * @copyright  (c) 2013 OpenBuildings Ltd.
+ * @license    http://spdx.org/licenses/BSD-3-Clause
+ */
 class Kohana_Model_Visitor extends Jam_Model {
 
 	const SESSION_VARIABLE = 'visitor-1';
 	
 	/**
+	 * Load a Model_Visitor object either from the current user or from the session if the user is not logged in
+	 * If no visitor is available in the session, create one, assign it to the currently loaded user, and trigger "model.user_set" event
 	 * @return Model_Visitor 
 	 */
 	public static function load()
@@ -32,6 +40,10 @@ class Kohana_Model_Visitor extends Jam_Model {
 		}
 	}
 
+	/**
+	 * Build a new Model_Visitor object, save it to the session and trigger model.create_session event
+	 * @return Model_Visitor
+	 */
 	public static function create_session()
 	{
 		$visitor = Jam::build('visitor');
@@ -43,6 +55,11 @@ class Kohana_Model_Visitor extends Jam_Model {
 		return $visitor;
 	}
 
+	/**
+	 * Save / Load the model visitor from the session. Use SESSION_VARIABLE const for the name in the session
+	 * @param  Model_Visitor $visitor
+	 * @return Model_Visitor
+	 */
 	public static function session($visitor = NULL)
 	{
 		if ($visitor !== NULL)
@@ -53,6 +70,32 @@ class Kohana_Model_Visitor extends Jam_Model {
 		return Session::instance()->get(static::SESSION_VARIABLE);
 	}
 
+	/**
+	 * @codeCoverageIgnore
+	 */
+	public static function initialize(Jam_Meta $meta)
+	{
+		$meta
+			->behaviors(array(
+				'currency_auto' => Jam::behavior('currency_auto'),
+				'visitor_defaults' => Jam::behavior('visitor_defaults'),
+			))
+			->associations(array(
+				'user' => Jam::association('belongsto', array('inverse_of' => 'visitor')),
+				'country' => Jam::association('belongsto', array('foreign_key' => 'country_id', 'foreign_model' => 'location')),
+			))
+
+			->fields(array(
+				'id' => Jam::field('primary'),
+				'ip' => Jam::field('ip'),
+				'token' => Jam::field('string'),
+			));
+	}
+
+	/**
+	 * If the model is loaded, perform "save" otherwise save to the session
+	 * @return Model_Visitor $this
+	 */
 	public function save_session()
 	{
 		if ($this->loaded())
@@ -68,6 +111,10 @@ class Kohana_Model_Visitor extends Jam_Model {
 		return $this;
 	}
 
+	/**
+	 * Implement Serializable
+	 * More lightweight than default serialization.
+	 */
 	public function serialize()
 	{
 		$fields = $this->as_array();
@@ -77,6 +124,10 @@ class Kohana_Model_Visitor extends Jam_Model {
 		return $data;
 	}
 
+	/**
+	 * Implement Serializable
+	 * More lightweight than default serialization.
+	 */
 	public function unserialize($data)
 	{
 		$data = json_decode($data, TRUE);
@@ -94,53 +145,4 @@ class Kohana_Model_Visitor extends Jam_Model {
 		}
 	}
 
-	/**
-	 * @codeCoverageIgnore
-	 */
-	public static function initialize(Jam_Meta $meta)
-	{
-		$meta
-			->behaviors(array(
-				'currency_auto' => Jam::behavior('currency_auto'),
-				'visitor_defaults' => Jam::behavior('visitor_defaults'),
-			))
-			->associations(array(
-				'user' => Jam::association('belongsto', array('inverse_of' => 'visitor')),
-				'country' => Jam::association('belongsto', array('foreign_key' => 'country_id', 'foreign_model' => 'location')),
-				'purchase' => Jam::association('belongsto', array('inverse_of' => 'current_visitor')),
-			))
-
-			->fields(array(
-				'id' => Jam::field('primary'),
-				'ip' => Jam::field('ip'),
-				'token' => Jam::field('string'),
-			));
-	}
-
-	public function build_purchase()
-	{
-		$this->build('purchase', array(
-			'currency' => $this->currency,
-			'creator' => $this->user,
-			'billing_address' => array(
-				'country' => $this->country,
-			)
-		));
-
-		$this->meta()->events()->trigger('model.build_purchase', $this);
-
-		$this->purchase->current_visitor = $this;
-
-		return $this->purchase;
-	}
-
-	public function purchase()
-	{
-		if ( ! $this->purchase) 
-		{
-			return $this->build_purchase();
-		}
-
-		return $this->purchase;
-	}
 }

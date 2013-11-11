@@ -133,32 +133,11 @@ class Model_VisitorTest extends Testcase_Extended {
 			'user_id' => 18301, 
 			'ip' => '231.43.243.132', 
 			'token' => uniqid(), 
-			'country_id' => 18323, 
-			'purchase_id' => 14322
+			'country_id' => 18323
 		));
 
 		$result = unserialize(serialize($visitor));
 
 		$this->assertEquals($result->as_array(), $visitor->as_array());
-	}
-
-	/**
-	 * @covers Model_Visitor::purchase
-	 */
-	public function test_purchase()
-	{
-		$visitor = Jam::find('visitor', 1);
-		$user = Jam::find('user', 1);
-		
-		$this->assertInstanceOf('Model_Purchase', $visitor->purchase());
-		$this->assertEquals(1, $visitor->purchase()->id());
-
-		$visitor = Jam::build('visitor', array('country' => 3));
-
-		$purchase = $visitor->purchase();
-		$this->assertInstanceOf('Model_Purchase', $visitor->purchase());
-		$this->assertFalse($purchase->loaded());
-		$this->assertEquals(3, $purchase->billing_address->country_id);
-		$this->assertTrue($visitor->build_purchase_called);
 	}
 }

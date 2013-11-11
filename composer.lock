@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "7e6effcd852552e921c130bf8ef4857f",
+    "hash": "293c0402403a6af3e31af3d52c672ba2",
     "packages": [
         {
             "name": "composer/installers",
@@ -173,58 +173,6 @@
             "time": "2013-01-15 21:37:15"
         },
         {
-            "name": "openbuildings/emp",
-            "version": "0.1.8",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/OpenBuildings/emp.git",
-                "reference": "84ce64e863a0cb1f73e88b0f864fb32b21cbee57"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/OpenBuildings/emp/zipball/84ce64e863a0cb1f73e88b0f864fb32b21cbee57",
-                "reference": "84ce64e863a0cb1f73e88b0f864fb32b21cbee57",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Openbuildings\\Emp\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Ivan Kerin",
-                    "email": "ivan@openbuildings.com",
-                    "homepage": "https://github.com/OpenBuildings/jam",
-                    "role": "Author"
-                },
-                {
-                    "name": "Haralan Dobrev",
-                    "email": "hdobrev@despark.com",
-                    "role": "Author"
-                }
-            ],
-            "description": "Payments for eMerchantPay (EMP) https://www.emerchantpay.com/",
-            "homepage": "https://github.com/OpenBuildings/emp",
-            "keywords": [
-                "EMP",
-                "credit cards",
-                "eMerchantPay",
-                "money",
-                "payments"
-            ],
-            "time": "2013-10-31 15:07:39"
-        },
-        {
             "name": "openbuildings/flex-storage",
             "version": "v0.1.2",
             "source": {
@@ -264,16 +212,16 @@
         },
         {
             "name": "openbuildings/jam",
-            "version": "0.4.29",
+            "version": "0.4.32",
             "source": {
                 "type": "git",
                 "url": "https://github.com/OpenBuildings/jam.git",
-                "reference": "6f921136441c1635ab2705980948431ceab92583"
+                "reference": "c0b85df332e3a1764d060a102b6a8fce254d262b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/OpenBuildings/jam/zipball/6f921136441c1635ab2705980948431ceab92583",
-                "reference": "6f921136441c1635ab2705980948431ceab92583",
+                "url": "https://api.github.com/repos/OpenBuildings/jam/zipball/c0b85df332e3a1764d060a102b6a8fce254d262b",
+                "reference": "c0b85df332e3a1764d060a102b6a8fce254d262b",
                 "shasum": ""
             },
             "require": {
@@ -313,7 +261,7 @@
                 "upload",
                 "validation"
             ],
-            "time": "2013-10-28 07:56:53"
+            "time": "2013-11-07 11:10:37"
         },
         {
             "name": "openbuildings/jam-auth",
@@ -569,73 +517,6 @@
                 "yahoo"
             ],
             "time": "2013-10-28 11:21:15"
-        },
-        {
-            "name": "openbuildings/purchases",
-            "version": "0.3.23",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/OpenBuildings/purchases.git",
-                "reference": "391ef4f530a9db7e1f71e7e10096460854e221f8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/OpenBuildings/purchases/zipball/391ef4f530a9db7e1f71e7e10096460854e221f8",
-                "reference": "391ef4f530a9db7e1f71e7e10096460854e221f8",
-                "shasum": ""
-            },
-            "require": {
-                "composer/installers": "*",
-                "openbuildings/emp": "0.1.*",
-                "openbuildings/jam": "0.4.*",
-                "openbuildings/jam-auth": "0.2.*",
-                "openbuildings/jam-locations": "0.1.*",
-                "openbuildings/jam-monetary": "0.1.*",
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "openbuildings/environment-backup": "0.1.*",
-                "openbuildings/kohana-test-bootsrap": "0.1.*",
-                "openbuildings/paypal": "0.3.*",
-                "openbuildings/phpunit-spiderling": "0.1.*",
-                "paypal/rest-api-sdk-php": "0.7.*"
-            },
-            "suggest": {
-                "openbuildings/paypal": "Require this package if you need to use PayPal payments with ChainedPayments",
-                "openbuildings/promotions": "Extends purchases functionality with promotions and gift cards",
-                "openbuildings/shipping": "Extends purchases functionality with shipping and delivery",
-                "paypal/rest-api-sdk-php": "Require this package if you need to use PayPal payments with REST API"
-            },
-            "type": "kohana-module",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Ivan Kerin",
-                    "email": "ivan@openbuildings.com",
-                    "homepage": "https://github.com/OpenBuildings/jam",
-                    "role": "Author"
-                },
-                {
-                    "name": "Haralan Dobrev",
-                    "email": "hkdobrev@gmail.com",
-                    "homepage": "http://hkdobrev.blogspot.com",
-                    "role": "Author"
-                }
-            ],
-            "description": "Multi Store Purchases",
-            "homepage": "https://github.com/OpenBuildings/purchases",
-            "keywords": [
-                "basket",
-                "cart",
-                "jam",
-                "kohana",
-                "purchase",
-                "store"
-            ],
-            "time": "2013-11-06 16:00:36"
         },
         {
             "name": "rackspace/php-opencloud",

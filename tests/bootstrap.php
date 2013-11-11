@@ -20,7 +20,6 @@ Kohana::modules(array(
 	'jam-monetary'       => __DIR__.'/../modules/jam-monetary',
 	'jam-closuretable'   => __DIR__.'/../modules/jam-closuretable',
 	'jam-locations'      => __DIR__.'/../modules/jam-locations',
-	'purchases'          => __DIR__.'/../modules/purchases',
 	'site-versions'      => __DIR__.'/..',
 ));
 

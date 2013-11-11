@@ -9,7 +9,6 @@ class Model_User extends Model_Auth_User {
 		$meta
 			->behaviors(array(
 				'visitor_user' => Jam::behavior('visitor_user'),
-				'buyer' => Jam::behavior('buyer'),
 			));
 	}
 }
