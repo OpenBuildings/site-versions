@@ -77,8 +77,7 @@ class Kohana_Model_Visitor extends Jam_Model {
 	{
 		$meta
 			->behaviors(array(
-				'currency_auto' => Jam::behavior('currency_auto'),
-				'visitor_defaults' => Jam::behavior('visitor_defaults'),
+				'visitor_defaults' => Jam::behavior('visitor_defaults')
 			))
 			->associations(array(
 				'user' => Jam::association('belongsto', array('inverse_of' => 'visitor')),
@@ -89,7 +88,10 @@ class Kohana_Model_Visitor extends Jam_Model {
 				'id' => Jam::field('primary'),
 				'ip' => Jam::field('ip'),
 				'token' => Jam::field('string'),
-			));
+				'currency' => Jam::field('string'),
+
+			))
+			->validator('currency', array('choice' => array('in' => array('EUR', 'GBP'))));
 	}
 
 	/**
