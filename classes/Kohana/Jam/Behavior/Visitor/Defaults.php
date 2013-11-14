@@ -8,7 +8,7 @@
  */
 class Kohana_Jam_Behavior_Visitor_Defaults extends Jam_Behavior {
 
-	public $_default_currency = 'EUR';
+	public $_default_currency = 'GBP';
 	public $_default_country_code = 'GB';
 
 	public $_countries_currencies = array(
