@@ -46,11 +46,11 @@ class Jam_Behavior_Visitor_DefaultsTest extends Testcase_Extended {
 	{
 		return array(
 			array('66.102.0.0', array('country_code' => 'GB', 'country_name' => 'United Kingdom'), array(), array('currency' => 'GBP', 'country' => 'United Kingdom')),
-			array('66.102.0.1', array('country_code' => 'FR', 'country_name' => 'France'), array(), array('currency' => 'EUR', 'country' => 'France')),
-			array('66.102.0.2', array('country_code' => 'AU', 'country_name' => 'Australia'), array(), array('currency' => 'EUR', 'country' => 'Australia')),
+			array('66.102.0.1', array('country_code' => 'FR', 'country_name' => 'France'), array(), array('currency' => 'GBP', 'country' => 'France')),
+			array('66.102.0.2', array('country_code' => 'AU', 'country_name' => 'Australia'), array(), array('currency' => 'GBP', 'country' => 'Australia')),
 			array('66.102.0.3', array('country_code' => 'AU', 'country_name' => 'Australia'), array('default_currency' => 'USD'), array('currency' => 'USD', 'country' => 'Australia')),
 			array('66.102.0.4', array('country_code' => 'AU', 'country_name' => 'Australia'), array('countries_currencies' => array('Australia' => 'AUD'), 'default_currency' => 'USD'), array('currency' => 'AUD', 'country' => 'Australia')),
-			array('66.102.0.5', array('country_name' => 'Australia'), array('default_country_code' => 'FR'), array('currency' => 'EUR', 'country' => 'France'))
+			array('66.102.0.5', array('country_name' => 'Australia'), array('default_country_code' => 'FR'), array('currency' => 'GBP', 'country' => 'France'))
 		);
 	}
 
