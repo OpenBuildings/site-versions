@@ -171,7 +171,7 @@ class Kohana_Site_Version {
 
 		if (array_key_exists('_SV_VISITOR_TOKEN', $_GET))
 		{
-			$this->load_visitor($_GET['_SV_VISITOR_TOKEN']);
+			static::load_visitor($_GET['_SV_VISITOR_TOKEN']);
 		}
 	}
 
