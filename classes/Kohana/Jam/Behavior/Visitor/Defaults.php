@@ -40,14 +40,14 @@ class Kohana_Jam_Behavior_Visitor_Defaults extends Jam_Behavior {
 
 	protected function _set_new_country(Model_Visitor $visitor, $geoip_record)
 	{
-		$short_name = Arr::get($geoip_record, 'country_code', $this->_default_country_code);
+		$short_name = Arr::get( (array) $geoip_record, 'country_code', $this->_default_country_code);
 
 		$visitor->country = Jam::all('location')->where('short_name', '=', $short_name)->first_insist();
 	}
 
 	protected function _set_new_currency(Model_Visitor $visitor, $geoip_record)
 	{
-		$visitor->currency = Arr::get($this->_countries_currencies, Arr::get($geoip_record, 'country_name'), $this->_default_currency);
+		$visitor->currency = Arr::get($this->_countries_currencies, Arr::get( (array) $geoip_record, 'country_name'), $this->_default_currency);
 	}
 
 	public function geoip_record($ip)
