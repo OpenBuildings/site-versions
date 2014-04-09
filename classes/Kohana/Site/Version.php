@@ -16,18 +16,18 @@ class Kohana_Site_Version {
 	 */
 	public static function versions()
 	{
-		return Kohana::$config->load('site-versions.versions');	
+		return Kohana::$config->load('site-versions.versions');
 	}
 
 	/**
 	 * Determince the current site version name
-	 * @return string 
+	 * @return string
 	 */
 	public static function current_version_name()
 	{
 		$versions = static::versions();
 
-		foreach ($versions as $version_name => $params) 
+		foreach ($versions as $version_name => $params)
 		{
 			$domains = Arr::extract($params, array('domain', 'secure_domain'));
 
@@ -43,18 +43,18 @@ class Kohana_Site_Version {
 
 	/**
 	 * Load the current version of the site (based on current_version_name) or load specific instance (from name)
-	 * 
-	 * @param  string $name 
+	 *
+	 * @param  string $name
 	 * @return Site_Version
 	 */
 	public static function instance($name = NULL)
 	{
-		if ($name === NULL) 
+		if ($name === NULL)
 		{
 			$name = 'current';
 		}
 
-		if ( ! isset(static::$instances[$name])) 
+		if ( ! isset(static::$instances[$name]))
 		{
 			$version_name = ($name == 'current') ? static::current_version_name() : $name;
 			static::$instances[$version_name] = static::$instances[$name] = new Site_Version($version_name);
@@ -82,7 +82,7 @@ class Kohana_Site_Version {
 
 	/**
 	 * Get the normal domain from config
-	 * @return string 
+	 * @return string
 	 */
 	public function domain()
 	{
@@ -99,7 +99,7 @@ class Kohana_Site_Version {
 	}
 
 	/**
-	 * Get the normal base url 
+	 * Get the normal base url
 	 * @return string
 	 */
 	public function base()
@@ -110,8 +110,8 @@ class Kohana_Site_Version {
 	/**
 	 * Get the url with the normal base domain.
 	 * E.g. site(/test/url) -> http://example.com/test/url
-	 * @param  string $url 
-	 * @return string      
+	 * @param  string $url
+	 * @return string
 	 */
 	public function site($url)
 	{
@@ -120,7 +120,7 @@ class Kohana_Site_Version {
 
 	/**
 	 * Get the domain used for secure connection if one is set, return normal domain if not
-	 * @return string 
+	 * @return string
 	 */
 	public function secure_domain()
 	{
@@ -128,7 +128,7 @@ class Kohana_Site_Version {
 	}
 
 	/**
-	 * Get the secure base url 
+	 * Get the secure base url
 	 * @return string
 	 */
 	public function secure_base()
@@ -139,7 +139,7 @@ class Kohana_Site_Version {
 	/**
 	 * Get the url with the secure base domain.
 	 * E.g. site(/test/url) -> https://example.com/test/url
-	 * @param  string $url 
+	 * @param  string $url
 	 * @return string
 	 */
 	public function secure_site($url)
@@ -164,7 +164,7 @@ class Kohana_Site_Version {
 	 */
 	public function configure()
 	{
-		if (($config_updates = $this->config('config'))) 
+		if (($config_updates = $this->config('config')))
 		{
 			$this->update_kohana_config($config_updates);
 		}
@@ -181,7 +181,7 @@ class Kohana_Site_Version {
 	 */
 	public function update_kohana_config(array $config_updates)
 	{
-		foreach ($config_updates as $key => $value) 
+		foreach ($config_updates as $key => $value)
 		{
 			list($file, $config_key) = explode('.', $key, 2);
 
@@ -196,12 +196,12 @@ class Kohana_Site_Version {
 
 	/**
 	 * Load visitor into the session from a given token
-	 * @param  string $token 
+	 * @param  string $token
 	 */
 	public function load_visitor($token)
 	{
 		$visitor = Jam::all('visitor')->where('token', '=', $token)->first();
-		
+
 		if ($visitor)
 		{
 			Model_Visitor::session($visitor);
@@ -226,11 +226,11 @@ class Kohana_Site_Version {
 
 	/**
 	 * Get the query parameters required to transport current visitor accross domains
-	 * @return array 
+	 * @return array
 	 */
 	public function visitor_params()
 	{
-		if ( ! $this->config('unified_visitor', TRUE)) 
+		if ( ! $this->config('unified_visitor', TRUE))
 			return array();
 
 		$visitor = Model_Visitor::load();

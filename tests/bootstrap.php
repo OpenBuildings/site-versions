@@ -1,4 +1,4 @@
-<?php 
+<?php
 spl_autoload_register(function($class)
 {
 	$file = __DIR__.DIRECTORY_SEPARATOR.'classes'.DIRECTORY_SEPARATOR.str_replace('_', '/', $class).'.php';
@@ -44,7 +44,7 @@ Kohana::$config
 		->set('session_type', 'Auth_Test')
 		->set('session_key', 'auth_user')
 		->set('hash_key', '11111');
-		
+
 Kohana::$environment = Kohana::TESTING;
 
 Session::$default = 'Auth_Test';

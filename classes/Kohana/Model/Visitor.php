@@ -9,11 +9,11 @@
 class Kohana_Model_Visitor extends Jam_Model {
 
 	const SESSION_VARIABLE = 'visitor-1';
-	
+
 	/**
 	 * Load a Model_Visitor object either from the current user or from the session if the user is not logged in
 	 * If no visitor is available in the session, create one, assign it to the currently loaded user, and trigger "model.user_set" event
-	 * @return Model_Visitor 
+	 * @return Model_Visitor
 	 */
 	public static function load()
 	{
@@ -26,16 +26,16 @@ class Kohana_Model_Visitor extends Jam_Model {
 		else
 		{
 			$visitor = static::session() ?: static::create_session();
-			
+
 			if ($user AND ! $visitor->user)
 			{
 				$user->visitor = $visitor;
-				
+
 				$visitor->meta()->events()->trigger('model.user_set', $visitor);
 
 				$user->save();
 			}
-			
+
 			return $visitor;
 		}
 	}
@@ -133,10 +133,10 @@ class Kohana_Model_Visitor extends Jam_Model {
 	public function unserialize($data)
 	{
 		$data = json_decode($data, TRUE);
-		
+
 		$this->_meta = Jam::meta($this);
 		$this->_loaded = isset($data['id']);
-		if ($this->_loaded) 
+		if ($this->_loaded)
 		{
 			$this->_original = (array) $data;
 		}

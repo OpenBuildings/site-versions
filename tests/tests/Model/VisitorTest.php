@@ -130,9 +130,9 @@ class Model_VisitorTest extends Testcase_Extended {
 	public function test_serialize()
 	{
 		$visitor = Jam::build('visitor', array(
-			'user_id' => 18301, 
-			'ip' => '231.43.243.132', 
-			'token' => uniqid(), 
+			'user_id' => 18301,
+			'ip' => '231.43.243.132',
+			'token' => uniqid(),
 			'country_id' => 18323
 		));
 

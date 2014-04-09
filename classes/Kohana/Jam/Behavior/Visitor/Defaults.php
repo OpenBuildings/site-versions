@@ -54,7 +54,7 @@ class Kohana_Jam_Behavior_Visitor_Defaults extends Jam_Behavior {
 	{
 		if ( ! extension_loaded('geoip'))
 			return array();
-		
+
 		return @ geoip_record_by_name($ip);
 	}
 }

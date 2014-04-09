@@ -15,7 +15,7 @@ class Jam_Behavior_Visitor_Tester extends Jam_Behavior {
 	{
 		$payment->create_session_called = TRUE;
 	}
-	
+
 	public function build_purchase(Model_Visitor $payment)
 	{
 		$payment->build_purchase_called = TRUE;

@@ -17,7 +17,7 @@ class Jam_Behavior_Visitor_DefaultsTest extends Testcase_Extended {
 			->method('set_new_token');
 
 		$meta = new Jam_Meta('test');
-		
+
 		$behavior->initialize($meta, 'visitor_defaults');
 
 		$visitor = Jam::build('visitor');
@@ -75,7 +75,7 @@ class Jam_Behavior_Visitor_DefaultsTest extends Testcase_Extended {
 
 		$behavior->set_geoip_defaults($visitor);
 
-		foreach ($expected as $field => $expected_value) 
+		foreach ($expected as $field => $expected_value)
 		{
 			$this->assertEquals($expected_value, is_object($visitor->{$field}) ? $visitor->{$field}->name() : $visitor->{$field});
 		}

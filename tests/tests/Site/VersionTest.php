@@ -126,7 +126,7 @@ class Site_VersionTest extends Testcase_Extended {
 		$this->assertInstanceOf('Site_Version', $instance);
 		$this->assertEquals(array('config'), $instance->config());
 		$this->assertEquals('test', $instance->name());
-		
+
 		$instance2 = $class::instance();
 
 		$this->assertSame($instance, $instance2);
@@ -176,7 +176,7 @@ class Site_VersionTest extends Testcase_Extended {
 				'secret' => 'changed_param2',
 			)
 		);
-		
+
 		$this->assertEquals($expceted, Kohana::$config->load('auth.services.facebook'));
 	}
 

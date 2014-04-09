@@ -27,16 +27,16 @@ class Session_Auth_Test extends Session {
 
 	// 	if ($data === 'b:0;')
 	// 		return FALSE;
-		
+
 	// 	$old_error_reporting = error_reporting(error_reporting() ^ E_NOTICE);
-		
+
 	// 	$raw_data = unserialize($data);
-		
+
 	// 	if ($raw_data === FALSE)
 	// 	{
 	// 		$raw_data = $data;
 	// 	}
-		
+
 	// 	error_reporting($old_error_reporting);
 
 	// 	return $raw_data;
@@ -82,7 +82,7 @@ class Session_Auth_Test extends Session {
 	protected function _write()
 	{
 		$this->_data =& $_SESSION;
-		
+
 		return TRUE;
 	}
 
