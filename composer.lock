@@ -3,20 +3,20 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "293c0402403a6af3e31af3d52c672ba2",
+    "hash": "93415904b0d47c2fb9973aa39f8d17c2",
     "packages": [
         {
             "name": "composer/installers",
-            "version": "v1.0.6",
+            "version": "v1.0.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "b3bd071ea114a57212c75aa6a2eef5cfe0cc798f"
+                "reference": "26d37e307f9aa6e2e81806a6525666f8ab5ba0ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/b3bd071ea114a57212c75aa6a2eef5cfe0cc798f",
-                "reference": "b3bd071ea114a57212c75aa6a2eef5cfe0cc798f",
+                "url": "https://api.github.com/repos/composer/installers/zipball/26d37e307f9aa6e2e81806a6525666f8ab5ba0ff",
+                "reference": "26d37e307f9aa6e2e81806a6525666f8ab5ba0ff",
                 "shasum": ""
             },
             "replace": {
@@ -46,37 +46,48 @@
                 {
                     "name": "Kyle Robinson Young",
                     "email": "kyle@dontkry.com",
-                    "homepage": "https://github.com/shama",
+                    "homepage": "http://dontkry.com",
                     "role": "Developer"
                 }
             ],
             "description": "A multi-framework Composer library installer",
             "homepage": "http://composer.github.com/installers/",
             "keywords": [
-                "TYPO3 CMS",
-                "TYPO3 Flow",
-                "TYPO3 Neos",
+                "Craft",
+                "Hurad",
+                "MODX Evo",
+                "OXID",
+                "WolfCMS",
                 "agl",
+                "annotatecms",
                 "cakephp",
                 "codeigniter",
+                "concrete5",
+                "croogo",
                 "drupal",
+                "elgg",
                 "fuelphp",
                 "installer",
                 "joomla",
                 "kohana",
                 "laravel",
-                "li3",
                 "lithium",
+                "magento",
                 "mako",
+                "mediawiki",
                 "modulework",
                 "phpbb",
+                "piwik",
                 "ppi",
+                "shopware",
                 "silverstripe",
                 "symfony",
+                "typo3",
                 "wordpress",
-                "zend"
+                "zend",
+                "zikula"
             ],
-            "time": "2013-08-20 04:37:09"
+            "time": "2014-04-09 16:12:43"
         },
         {
             "name": "desarrolla2/cache",
@@ -131,22 +142,25 @@
         },
         {
             "name": "facebook/php-sdk",
-            "version": "v3.2.2",
+            "version": "v3.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facebook/facebook-php-sdk.git",
-                "reference": "bf99924386be074da30a8e9d6bbcb49d3333da12"
+                "reference": "6714042fa2f5979d4c64c7d11fb4bcab16bdf6cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facebook/facebook-php-sdk/zipball/bf99924386be074da30a8e9d6bbcb49d3333da12",
-                "reference": "bf99924386be074da30a8e9d6bbcb49d3333da12",
+                "url": "https://api.github.com/repos/facebook/facebook-php-sdk/zipball/6714042fa2f5979d4c64c7d11fb4bcab16bdf6cb",
+                "reference": "6714042fa2f5979d4c64c7d11fb4bcab16bdf6cb",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
                 "ext-json": "*",
                 "php": ">=5.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
             },
             "type": "library",
             "autoload": {
@@ -170,7 +184,7 @@
                 "facebook",
                 "sdk"
             ],
-            "time": "2013-01-15 21:37:15"
+            "time": "2013-11-19 23:11:14"
         },
         {
             "name": "openbuildings/flex-storage",
@@ -212,16 +226,16 @@
         },
         {
             "name": "openbuildings/jam",
-            "version": "0.4.32",
+            "version": "0.4.51",
             "source": {
                 "type": "git",
                 "url": "https://github.com/OpenBuildings/jam.git",
-                "reference": "c0b85df332e3a1764d060a102b6a8fce254d262b"
+                "reference": "0889bd65545cd05a161ac2b79fd1c21d9aec346b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/OpenBuildings/jam/zipball/c0b85df332e3a1764d060a102b6a8fce254d262b",
-                "reference": "c0b85df332e3a1764d060a102b6a8fce254d262b",
+                "url": "https://api.github.com/repos/OpenBuildings/jam/zipball/0889bd65545cd05a161ac2b79fd1c21d9aec346b",
+                "reference": "0889bd65545cd05a161ac2b79fd1c21d9aec346b",
                 "shasum": ""
             },
             "require": {
@@ -261,7 +275,7 @@
                 "upload",
                 "validation"
             ],
-            "time": "2013-11-07 11:10:37"
+            "time": "2014-04-24 12:41:58"
         },
         {
             "name": "openbuildings/jam-auth",
@@ -313,16 +327,16 @@
         },
         {
             "name": "openbuildings/jam-closuretable",
-            "version": "0.1.0",
+            "version": "0.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/OpenBuildings/jam-closuretable.git",
-                "reference": "b4966d8d8d805a3ebb688a8a60b73b0ce6b81e02"
+                "reference": "8f7179487394d3beff5b74ca3279ed6d135d77f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/OpenBuildings/jam-closuretable/zipball/b4966d8d8d805a3ebb688a8a60b73b0ce6b81e02",
-                "reference": "b4966d8d8d805a3ebb688a8a60b73b0ce6b81e02",
+                "url": "https://api.github.com/repos/OpenBuildings/jam-closuretable/zipball/8f7179487394d3beff5b74ca3279ed6d135d77f3",
+                "reference": "8f7179487394d3beff5b74ca3279ed6d135d77f3",
                 "shasum": ""
             },
             "require": {
@@ -347,7 +361,7 @@
                 }
             ],
             "description": "Closuretable behavior",
-            "homepage": "https://github.com/OpenBuildings/purchases",
+            "homepage": "https://github.com/OpenBuildings/jam-closuretable",
             "keywords": [
                 "closuretable",
                 "jam",
@@ -356,26 +370,26 @@
                 "structure",
                 "tree"
             ],
-            "time": "2013-09-02 12:41:12"
+            "time": "2014-04-09 10:14:18"
         },
         {
             "name": "openbuildings/jam-locations",
-            "version": "0.1.1",
+            "version": "0.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/OpenBuildings/jam-locations.git",
-                "reference": "1b3183467f376f99451cfdc7445c07b11a83d0cf"
+                "reference": "af9ca9e817652a6c72a532bfe858b17ff42733b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/OpenBuildings/jam-locations/zipball/1b3183467f376f99451cfdc7445c07b11a83d0cf",
-                "reference": "1b3183467f376f99451cfdc7445c07b11a83d0cf",
+                "url": "https://api.github.com/repos/OpenBuildings/jam-locations/zipball/af9ca9e817652a6c72a532bfe858b17ff42733b3",
+                "reference": "af9ca9e817652a6c72a532bfe858b17ff42733b3",
                 "shasum": ""
             },
             "require": {
                 "composer/installers": "*",
                 "openbuildings/jam-closuretable": "0.1.*",
-                "php": ">=5.4.0"
+                "php": ">=5.3.0"
             },
             "require-dev": {
                 "ext-geoip": "*",
@@ -404,20 +418,20 @@
                 "kohana",
                 "location"
             ],
-            "time": "2013-09-26 07:02:11"
+            "time": "2014-04-16 08:27:51"
         },
         {
             "name": "openbuildings/jam-monetary",
-            "version": "0.1.16",
+            "version": "0.1.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/OpenBuildings/jam-monetary.git",
-                "reference": "190dfe42d280ed089c4cc4cb357394e1d59e0329"
+                "reference": "170df0dbfe292ad1db598473dbb061857f5a800b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/OpenBuildings/jam-monetary/zipball/190dfe42d280ed089c4cc4cb357394e1d59e0329",
-                "reference": "190dfe42d280ed089c4cc4cb357394e1d59e0329",
+                "url": "https://api.github.com/repos/OpenBuildings/jam-monetary/zipball/170df0dbfe292ad1db598473dbb061857f5a800b",
+                "reference": "170df0dbfe292ad1db598473dbb061857f5a800b",
                 "shasum": ""
             },
             "require": {
@@ -452,7 +466,7 @@
                 "money",
                 "price"
             ],
-            "time": "2013-10-29 16:40:22"
+            "time": "2014-01-06 15:00:53"
         },
         {
             "name": "openbuildings/monetary",
@@ -497,6 +511,7 @@
                 {
                     "name": "Haralan Dobrev",
                     "email": "hdobrev@despark.com",
+                    "homepage": "https://github.com/hkdobrev",
                     "role": "Author"
                 },
                 {
@@ -553,7 +568,8 @@
                 },
                 {
                     "name": "Jamie Hannaford",
-                    "email": "jamie.hannaford@rackspace.com"
+                    "email": "jamie.hannaford@rackspace.com",
+                    "homepage": "https://github.com/jamiehannaford"
                 }
             ],
             "description": "Rackspace open cloud php library",

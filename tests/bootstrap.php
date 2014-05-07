@@ -48,3 +48,5 @@ Kohana::$config
 Kohana::$environment = Kohana::TESTING;
 
 Session::$default = 'Auth_Test';
+
+error_reporting(E_ALL ^ E_DEPRECATED);

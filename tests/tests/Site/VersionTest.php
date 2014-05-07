@@ -71,15 +71,10 @@ class Site_VersionTest extends Testcase_Extended {
 	{
 		$this->env->backup_and_set(array(
 			'HTTP_HOST' => $host,
+			'site-versions.versions' => $versions,
 		));
 
-		$class = $this->getMockClass('Site_Version', array('versions'));
-
-		$class::staticExpects($this->once())
-			->method('versions')
-			->will($this->returnValue($versions));
-
-		$version = $class::current_version_name();
+		$version = Site_Version::current_version_name();
 
 		$this->assertEquals($expceted, $version);
 	}
@@ -110,32 +105,27 @@ class Site_VersionTest extends Testcase_Extended {
 	{
 		$this->env->backup_and_set(array(
 			'site-versions.versions' => array(
-				'test' => array('config'),
+				'test' => array('config' => 'test', 'domain' => 'example.com'),
 				'test2' => array('config2'),
 			),
+			'HTTP_HOST' => 'example.com',
 		));
 
-		$class = $this->getMockClass('Site_Version', array('current_version_name'));
-
-		$class::staticExpects($this->once())
-			->method('current_version_name')
-			->will($this->returnValue('test'));
-
-		$instance = $class::instance();
+		$instance = Site_Version::instance();
 
 		$this->assertInstanceOf('Site_Version', $instance);
-		$this->assertEquals(array('config'), $instance->config());
+		$this->assertEquals(array('config' => 'test', 'domain' => 'example.com'), $instance->config());
 		$this->assertEquals('test', $instance->name());
 
-		$instance2 = $class::instance();
+		$instance2 = Site_Version::instance();
 
 		$this->assertSame($instance, $instance2);
 
-		$instance3 = $class::instance('test');
+		$instance3 = Site_Version::instance('test');
 
 		$this->assertSame($instance, $instance3);
 
-		$instance4 = $class::instance('test2');
+		$instance4 = Site_Version::instance('test2');
 
 		$this->assertInstanceOf('Site_Version', $instance4);
 		$this->assertEquals(array('config2'), $instance4->config());

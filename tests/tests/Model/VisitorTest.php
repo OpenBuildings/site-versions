@@ -27,14 +27,10 @@ class Model_VisitorTest extends Testcase_Extended {
 		$loaded_visitor = Jam::build('visitor');
 
 		Auth::instance()->force_login($user);
+		Model_Visitor::session($loaded_visitor);
 
-		$class = $this->getMockClass('Model_Visitor', array('session'));
 
-		$class::staticExpects($this->once())
-			->method('session')
-			->will($this->returnValue($loaded_visitor));
-
-		$result = $class::load();
+		$result = Model_Visitor::load();
 
 		$this->assertSame($loaded_visitor, $result);
 		$this->assertTrue($loaded_visitor->loaded());
@@ -48,26 +44,14 @@ class Model_VisitorTest extends Testcase_Extended {
 	public function test_load_loaded_user2()
 	{
 		$user = Jam::find('user', 2);
-		$created_visitor = Jam::build('visitor');
 
 		Auth::instance()->force_login($user);
 
-		$class = $this->getMockClass('Model_Visitor', array('session', 'create_session'));
+		$result = Model_Visitor::load();
 
-		$class::staticExpects($this->once())
-			->method('session')
-			->will($this->returnValue(NULL));
-
-		$class::staticExpects($this->once())
-			->method('create_session')
-			->will($this->returnValue($created_visitor));
-
-		$result = $class::load();
-
-		$this->assertSame($created_visitor, $result);
-		$this->assertTrue($created_visitor->loaded());
-		$this->assertNotEquals(1, $created_visitor->id());
-		$this->assertSame($created_visitor->user, $user);
+		$this->assertSame($result->user, $user);
+		$this->assertTrue($result->loaded());
+		$this->assertNotEquals(1, $result->id());
 	}
 
 
@@ -76,13 +60,7 @@ class Model_VisitorTest extends Testcase_Extended {
 	 */
 	public function test_create_session()
 	{
-		$class = $this->getMockClass('Model_Visitor', array('session'));
-
-		$class::staticExpects($this->once())
-			->method('session')
-			->with($this->isInstanceOf('Model_Visitor'));
-
-		$visitor = $class::create_session();
+		$visitor = Model_Visitor::create_session();
 		$this->assertInstanceOf('Model_Visitor', $visitor);
 		$this->assertFalse($visitor->loaded());
 		$this->assertTrue($visitor->create_session_called);
