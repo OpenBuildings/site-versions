@@ -240,7 +240,9 @@ class Kohana_Site_Version {
 			$visitor->save();
 		}
 
-		return array('_SV_VISITOR_TOKEN' => $visitor->token);
+		$params = array('_SV_VISITOR_TOKEN' => $visitor->token);
+
+		return $params;
 	}
 
 	/**
@@ -252,6 +254,18 @@ class Kohana_Site_Version {
 		if ($_SERVER['HTTP_HOST'] !== $this->secure_domain())
 		{
 			HTTP::redirect($this->secure_site(Request::initial()->uri()).URL::query($this->visitor_params(), FALSE));
+		}
+	}
+
+	public function secure_uri($uri)
+	{
+		if ($_SERVER['HTTP_HOST'] !== $this->secure_domain())
+		{
+			return $this->secure_site($uri).URL::query($this->visitor_params(), FALSE);
+		}
+		else
+		{
+			return $uri;
 		}
 	}
 }

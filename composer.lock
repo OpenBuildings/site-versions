@@ -1,7 +1,8 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
     "hash": "93415904b0d47c2fb9973aa39f8d17c2",
     "packages": [
@@ -226,16 +227,16 @@
         },
         {
             "name": "openbuildings/jam",
-            "version": "0.4.51",
+            "version": "0.4.52",
             "source": {
                 "type": "git",
                 "url": "https://github.com/OpenBuildings/jam.git",
-                "reference": "0889bd65545cd05a161ac2b79fd1c21d9aec346b"
+                "reference": "dfd311cb3f5f8393c81971c98dc91005e3f59dd3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/OpenBuildings/jam/zipball/0889bd65545cd05a161ac2b79fd1c21d9aec346b",
-                "reference": "0889bd65545cd05a161ac2b79fd1c21d9aec346b",
+                "url": "https://api.github.com/repos/OpenBuildings/jam/zipball/dfd311cb3f5f8393c81971c98dc91005e3f59dd3",
+                "reference": "dfd311cb3f5f8393c81971c98dc91005e3f59dd3",
                 "shasum": ""
             },
             "require": {
@@ -275,7 +276,7 @@
                 "upload",
                 "validation"
             ],
-            "time": "2014-04-24 12:41:58"
+            "time": "2014-06-02 10:36:32"
         },
         {
             "name": "openbuildings/jam-auth",
@@ -655,17 +656,11 @@
             "time": "2013-10-01 08:57:54"
         }
     ],
-    "aliases": [
-
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "stability-flags": [],
     "platform": {
         "php": ">=5.3.0"
     },
-    "platform-dev": [
-
-    ]
+    "platform-dev": []
 }

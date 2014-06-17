@@ -274,6 +274,49 @@ class Site_VersionTest extends Testcase_Extended {
 		$this->assertEquals($expected, $protocol);
 	}
 
+	public function data_visitor_params()
+	{
+		return array(
+			array(
+				array(
+					'unified_visitor' => FALSE
+				),
+				array()
+			),
+			array(
+				array(
+					'unified_visitor' => TRUE
+				),
+				array(
+					'_SV_VISITOR_TOKEN' => '53a0216a7ba6f'
+				)
+			),
+		);
+	}
+
+	/**
+	 * @dataProvider data_visitor_params
+	 * @covers Site_Version::visitor_params
+	 */
+	public function test_visitor_params($config, $expected)
+	{
+		$this->env->backup_and_set(array(
+			'site-versions.versions' => array(
+				'test' => $config,
+			),
+			'_COOKIE' => array('_ga' => 'GA1.2.1356520872.1376395956'),
+		));
+
+		$version = new Site_Version('test');
+
+		$visitor = Model_Visitor::load();
+		$visitor->token = '53a0216a7ba6f';
+
+		$visitor_params = $version->visitor_params();
+
+
+		$this->assertEquals($expected, $visitor_params);
+	}
 
 	public function data_base()
 	{
@@ -300,5 +343,46 @@ class Site_VersionTest extends Testcase_Extended {
 		$base = $version->base();
 
 		$this->assertEquals($expected, $base);
+	}
+
+	public function data_secure_url()
+	{
+		return array(
+			array(
+				array('protocol' => 'https', 'domain' => 'example.com', 'secure_domain' => 'secure.example.com'),
+				'example.com',
+				'/test',
+				'https://secure.example.com/test?_SV_VISITOR_TOKEN=53a0216a7ba6f',
+			),
+			array(
+				array('protocol' => 'https', 'domain' => 'example.com', 'secure_domain' => 'secure.example.com'),
+				'secure.example.com',
+				'/test',
+				'/test',
+			),
+		);
+	}
+
+	/**
+	 * @dataProvider data_secure_url
+	 * @covers Site_Version::secure_url
+	 */
+	public function test_secure_url($config, $domain,$uri, $expected)
+	{
+		$this->env->backup_and_set(array(
+			'site-versions.versions' => array(
+				'test' => $config,
+			),
+			'HTTP_HOST' => $domain,
+		));
+
+		$visitor = Model_Visitor::load();
+		$visitor->token = '53a0216a7ba6f';
+
+		$version = new Site_Version('test');
+
+		$uri = $version->secure_uri($uri);
+
+		$this->assertEquals($expected, $uri);
 	}
 }
