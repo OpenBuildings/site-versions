@@ -345,7 +345,7 @@ class Site_VersionTest extends Testcase_Extended {
 		$this->assertEquals($expected, $base);
 	}
 
-	public function data_secure_url()
+	public function data_secure_uri()
 	{
 		return array(
 			array(
@@ -364,10 +364,10 @@ class Site_VersionTest extends Testcase_Extended {
 	}
 
 	/**
-	 * @dataProvider data_secure_url
-	 * @covers Site_Version::secure_url
+	 * @dataProvider data_secure_uri
+	 * @covers Site_Version::secure_uri
 	 */
-	public function test_secure_url($config, $domain,$uri, $expected)
+	public function test_secure_uri($config, $domain,$uri, $expected)
 	{
 		$this->env->backup_and_set(array(
 			'site-versions.versions' => array(
