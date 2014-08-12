@@ -169,6 +169,11 @@ class Kohana_Site_Version {
 			$this->update_kohana_config($config_updates);
 		}
 
+		if (($routes = $this->config('routes')))
+		{
+			$this->set_routes($routes);
+		}
+
 		if (array_key_exists('_SV_VISITOR_TOKEN', $_GET))
 		{
 			static::load_visitor($_GET['_SV_VISITOR_TOKEN']);
@@ -177,7 +182,7 @@ class Kohana_Site_Version {
 
 	/**
 	 * Update kohana config parameters
-	 * @param  array  $config_updates [description]
+	 * @param  array  $config_updates
 	 */
 	public function update_kohana_config(array $config_updates)
 	{
@@ -191,6 +196,19 @@ class Kohana_Site_Version {
 			$config_value = Arr::merge($config_value, $value);
 
 			$config->set($config_key, $config_value);
+		}
+	}
+
+	/**
+	 * Add / Overwrite routes, specific for the site version
+	 * @param  array  $routes
+	 */
+	public function set_routes(array $routes)
+	{
+		foreach ($routes as $name => $options)
+		{
+			Route::set($name, $options[0], Arr::get($options, 1, array()))
+				->defaults(Arr::get($options, 2, array()));
 		}
 	}
 

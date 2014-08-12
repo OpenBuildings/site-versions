@@ -172,7 +172,44 @@ class Site_VersionTest extends Testcase_Extended {
 	}
 
 	/**
-	 * @covers Site_Version::configure
+	 * @covers ::set_routes
+	 */
+	public function test_set_routes()
+	{
+		$this->env->backup_and_set(array(
+			'site-versions.versions' => array(
+				'test' => array(),
+			),
+		));
+
+		$this->assertCount(1, Route::all());
+
+		$version = new Site_Version('test');
+
+		$version->set_routes(array(
+			'homepage' => array(
+				'home(/<id>)',
+				array('action' => '\d+'),
+				array(
+					'controller' => 'test',
+					'action' => 'index',
+				)
+			)
+		));
+
+		$this->assertCount(2, Route::all());
+
+		$expected = new Route('home(/<id>)', array('action' => '\d+'));
+		$expected->defaults(array(
+			'controller' => 'test',
+			'action' => 'index',
+		));
+
+		$this->assertEquals($expected, Route::get('homepage'));
+	}
+
+	/**
+	 * @covers ::configure
 	 */
 	public function test_configure()
 	{
@@ -182,12 +219,18 @@ class Site_VersionTest extends Testcase_Extended {
 			),
 			'site-versions.versions' => array(
 				'test' => array(
-					'config' => array('some_config')
+					'config' => array('some_config'),
+					'routes' => array('homepage' => 'home(/<id>)'),
 				),
 			),
 		));
 
-		$version = $this->getMock('Site_Version', array('update_kohana_config', 'load_visitor'), array('test'));
+		$version = $this->getMock('Site_Version', array('load_visitor', 'update_kohana_config', 'set_routes'), array('test'));
+
+		$version
+			->expects($this->once())
+			->method('load_visitor')
+			->with($this->equalTo('123'));
 
 		$version
 			->expects($this->once())
@@ -196,8 +239,8 @@ class Site_VersionTest extends Testcase_Extended {
 
 		$version
 			->expects($this->once())
-			->method('load_visitor')
-			->with($this->equalTo('123'));
+			->method('set_routes')
+			->with($this->equalTo(array('homepage' => 'home(/<id>)')));
 
 		$version->configure();
 	}
