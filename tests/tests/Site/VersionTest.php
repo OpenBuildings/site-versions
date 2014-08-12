@@ -2,6 +2,7 @@
 
 /**
  * @group  site_version
+ * @coversDefaultClass Site_Version
  */
 class Site_VersionTest extends Testcase_Extended {
 
@@ -65,7 +66,7 @@ class Site_VersionTest extends Testcase_Extended {
 
 	/**
 	 * @dataProvider data_current_version_name
-	 * @covers Site_Version::current_version_name
+	 * @covers ::current_version_name
 	 */
 	public function test_current_version_name($host, $versions, $expceted)
 	{
@@ -80,7 +81,7 @@ class Site_VersionTest extends Testcase_Extended {
 	}
 
 	/**
-	 * @covers Site_Version::versions
+	 * @covers ::versions
 	 */
 	public function test_versions()
 	{
@@ -96,10 +97,10 @@ class Site_VersionTest extends Testcase_Extended {
 	}
 
 	/**
-	 * @covers Site_Version::instance
-	 * @covers Site_Version::__construct
-	 * @covers Site_Version::name
-	 * @covers Site_Version::config
+	 * @covers ::instance
+	 * @covers ::__construct
+	 * @covers ::name
+	 * @covers ::config
 	 */
 	public function test_instance()
 	{
@@ -133,7 +134,7 @@ class Site_VersionTest extends Testcase_Extended {
 	}
 
 	/**
-	 * @covers Site_Version::update_kohana_config
+	 * @covers ::update_kohana_config
 	 */
 	public function test_update_kohana_config()
 	{
@@ -202,7 +203,7 @@ class Site_VersionTest extends Testcase_Extended {
 	}
 
 	/**
-	 * @covers Site_Version::load_visitor
+	 * @covers ::load_visitor
 	 */
 	public function test_load_visitor()
 	{
@@ -225,7 +226,7 @@ class Site_VersionTest extends Testcase_Extended {
 	}
 
 	/**
-	 * @covers Site_Version::domain
+	 * @covers ::domain
 	 */
 	public function test_domain()
 	{
@@ -257,7 +258,7 @@ class Site_VersionTest extends Testcase_Extended {
 
 	/**
 	 * @dataProvider data_protocol
-	 * @covers Site_Version::protocol
+	 * @covers ::protocol
 	 */
 	public function test_protocol($config, $expected)
 	{
@@ -296,7 +297,7 @@ class Site_VersionTest extends Testcase_Extended {
 
 	/**
 	 * @dataProvider data_visitor_params
-	 * @covers Site_Version::visitor_params
+	 * @covers ::visitor_params
 	 */
 	public function test_visitor_params($config, $expected)
 	{
@@ -328,7 +329,7 @@ class Site_VersionTest extends Testcase_Extended {
 
 	/**
 	 * @dataProvider data_base
-	 * @covers Site_Version::base
+	 * @covers ::base
 	 */
 	public function test_base($config, $expected)
 	{
@@ -365,7 +366,7 @@ class Site_VersionTest extends Testcase_Extended {
 
 	/**
 	 * @dataProvider data_secure_uri
-	 * @covers Site_Version::secure_uri
+	 * @covers ::secure_uri
 	 */
 	public function test_secure_uri($config, $domain,$uri, $expected)
 	{

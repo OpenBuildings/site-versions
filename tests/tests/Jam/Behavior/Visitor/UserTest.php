@@ -2,11 +2,12 @@
 
 /**
  * @group  jam.behavior.visitor_user
+ * @coversDefaultClass Jam_Behavior_Visitor_User
  */
 class Jam_Behavior_Visitor_UserTest extends Testcase_Extended {
 
 	/**
-	 * @covers Jam_Behavior_Visitor_User::initialize
+	 * @covers ::initialize
 	 */
 	public function test_initialze()
 	{

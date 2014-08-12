@@ -2,11 +2,12 @@
 
 /**
  * @group  jam.behavior.visitor_defaults
+ * @coversDefaultClass Jam_Behavior_Visitor_Defaults
  */
 class Jam_Behavior_Visitor_DefaultsTest extends Testcase_Extended {
 
 	/**
-	 * @covers Jam_Behavior_Visitor_Defaults::initialize
+	 * @covers ::initialize
 	 */
 	public function test_initialze()
 	{
@@ -26,7 +27,7 @@ class Jam_Behavior_Visitor_DefaultsTest extends Testcase_Extended {
 	}
 
 	/**
-	 * @covers Jam_Behavior_Visitor_Defaults::set_new_token
+	 * @covers ::set_new_token
 	 */
 	public function test_set_new_token()
 	{
@@ -56,9 +57,9 @@ class Jam_Behavior_Visitor_DefaultsTest extends Testcase_Extended {
 
 	/**
 	 * @dataProvider data_model_set_geoip_defaults
-	 * @covers Jam_Behavior_Visitor_Defaults::set_geoip_defaults
-	 * @covers Jam_Behavior_Visitor_Defaults::_set_new_country
-	 * @covers Jam_Behavior_Visitor_Defaults::_set_new_currency
+	 * @covers ::set_geoip_defaults
+	 * @covers ::_set_new_country
+	 * @covers ::_set_new_currency
 	 */
 	public function test_model_set_geoip_defaults($ip, $geoip_record, $options, $expected)
 	{

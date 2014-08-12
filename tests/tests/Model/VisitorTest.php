@@ -2,11 +2,12 @@
 
 /**
  * @group  model.visitor
+ * @coversDefaultClass Model_Visitor
  */
 class Model_VisitorTest extends Testcase_Extended {
 
 	/**
-	 * @covers Model_Visitor::load
+	 * @covers ::load
 	 */
 	public function test_load_loaded_models()
 	{
@@ -19,7 +20,7 @@ class Model_VisitorTest extends Testcase_Extended {
 	}
 
 	/**
-	 * @covers Model_Visitor::load
+	 * @covers ::load
 	 */
 	public function test_load_loaded_user()
 	{
@@ -39,7 +40,7 @@ class Model_VisitorTest extends Testcase_Extended {
 	}
 
 	/**
-	 * @covers Model_Visitor::load
+	 * @covers ::load
 	 */
 	public function test_load_loaded_user2()
 	{
@@ -56,7 +57,7 @@ class Model_VisitorTest extends Testcase_Extended {
 
 
 	/**
-	 * @covers Model_Visitor::create_session
+	 * @covers ::create_session
 	 */
 	public function test_create_session()
 	{
@@ -67,7 +68,7 @@ class Model_VisitorTest extends Testcase_Extended {
 	}
 
 	/**
-	 * @covers Model_Visitor::session
+	 * @covers ::session
 	 */
 	public function test_session()
 	{
@@ -83,7 +84,7 @@ class Model_VisitorTest extends Testcase_Extended {
 	}
 
 	/**
-	 * @covers Model_Visitor::save_session
+	 * @covers ::save_session
 	 */
 	public function test_save_session()
 	{
@@ -102,8 +103,8 @@ class Model_VisitorTest extends Testcase_Extended {
 	}
 
 	/**
-	 * @covers Model_Visitor::serialize
-	 * @covers Model_Visitor::unserialize
+	 * @covers ::serialize
+	 * @covers ::unserialize
 	 */
 	public function test_serialize()
 	{
