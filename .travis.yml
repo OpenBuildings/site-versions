@@ -15,8 +15,8 @@ install:
 
 before_script:
   - mkdir -p build/logs
-  - mysql -e 'create database `test-site-versions`;'
-  - mysql --default-character-set=utf8 test-site-versions < tests/test_data/structure.sql
+  - mysql -e 'create database `OpenBuildings/site-versions`;'
+  - mysql --default-character-set=utf8 OpenBuildings/site-versions < tests/test_data/structure.sql
 
 script:
   - phpunit --coverage-clover build/logs/clover.xml

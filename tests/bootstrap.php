@@ -29,7 +29,7 @@ Kohana::$config
 			'type'       => 'MySQL',
 			'connection' => array(
 				'hostname'   => 'localhost',
-				'database'   => 'test-site-versions',
+				'database'   => 'OpenBuildings/site-versions',
 				'username'   => 'root',
 				'password'   => '',
 				'persistent' => TRUE,
