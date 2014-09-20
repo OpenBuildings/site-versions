@@ -429,4 +429,42 @@ class Site_VersionTest extends Testcase_Extended {
 
 		$this->assertEquals($expected, $uri);
 	}
+
+	public function test_redirect_to_secure()
+	{
+		if ( ! Request::initial())
+		{
+			Request::factory();
+		}
+
+		$this->env->backup_and_set(array(
+			'HTTP_HOST' => 'example.com',
+			'site-versions.versions' => array(
+				'test' => array(
+					'domain' => 'example.com',
+					'secure_domain' => 'example.com'
+				),
+			),
+		));
+
+		$previous_secure = Request::initial()->secure() ?: FALSE;
+
+		$version = Site_Version::instance('test');
+
+		Request::initial()->secure(TRUE);
+		$version->redirect_to_secure();
+
+		Request::initial()->secure(FALSE);
+
+		try
+		{
+			$version->redirect_to_secure();
+			$this->fail('Redirect to secure domain expected');
+		}
+		catch (HTTP_Exception_302 $e)
+		{
+		}
+
+		Request::initial()->secure($previous_secure);
+	}
 }
