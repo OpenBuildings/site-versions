@@ -269,7 +269,7 @@ class Kohana_Site_Version {
 	 */
 	public function redirect_to_secure()
 	{
-		if ($_SERVER['HTTP_HOST'] !== $this->secure_domain())
+		if ( ! Request::initial()->secure())
 		{
 			HTTP::redirect($this->secure_site(Request::initial()->uri()).URL::query($this->visitor_params(), FALSE));
 		}
