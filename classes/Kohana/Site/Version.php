@@ -27,15 +27,17 @@ class Kohana_Site_Version {
 	{
 		$versions = static::versions();
 
-		foreach ($versions as $version_name => $params) {
+		foreach ($versions as $version_name => $params)
+		{
 
 			$domains = array_filter(Arr::extract($params, array('domain', 'secure_domain')));
 
-			$matchedDomains = array_filter($domains, function ($domain) {
+			$matched_domains = array_filter($domains, function ($domain) {
 				return preg_match($domain, $_SERVER['HTTP_HOST']);
 			});
 
-			if (count($matchedDomains) > 0) {
+			if (count($matched_domains) > 0)
+			{
 				return $version_name;
 			}
 		}
