@@ -29,15 +29,21 @@ class Kohana_Site_Version {
 
 		foreach ($versions as $version_name => $params)
 		{
-			$domains = Arr::extract($params, array('domain', 'secure_domain'));
 
-			if (array_search($_SERVER['HTTP_HOST'], $domains) !== FALSE)
+			$domains = array_filter(Arr::extract($params, array('domain', 'secure_domain')));
+
+			$matched_domains = array_filter($domains, function ($domain) {
+				return preg_match($domain, $_SERVER['HTTP_HOST']);
+			});
+
+			if (count($matched_domains) > 0)
 			{
 				return $version_name;
 			}
 		}
 
 		end($versions);
+
 		return key($versions);
 	}
 
@@ -124,16 +130,15 @@ class Kohana_Site_Version {
 	 */
 	public function secure_domain()
 	{
-		return $this->config('secure_domain', $this->domain());
+		return $this->config('secure_domain');
 	}
 
 	/**
-	 * Get the secure base url
 	 * @return string
 	 */
-	public function secure_base()
+	public function secure_domain_replace()
 	{
-		return 'https://'.$this->secure_domain();
+		return $this->config('secure_domain_replace');
 	}
 
 	/**
@@ -144,7 +149,11 @@ class Kohana_Site_Version {
 	 */
 	public function secure_site($url)
 	{
-		return $this->secure_base().'/'.ltrim($url, '/');
+		$current_domain = $_SERVER['HTTP_HOST'];
+
+		$secure_domain = preg_replace($this->domain(), $this->secure_domain_replace(), $current_domain);
+
+		return "https://{$secure_domain}/".ltrim($url, '/');
 	}
 
 	/**
@@ -277,13 +286,13 @@ class Kohana_Site_Version {
 
 	public function secure_uri($uri)
 	{
-		if ($_SERVER['HTTP_HOST'] !== $this->secure_domain())
+		if (preg_match($this->secure_domain(), $_SERVER['HTTP_HOST']))
 		{
-			return $this->secure_site($uri).URL::query($this->visitor_params(), FALSE);
+			return $uri;
 		}
 		else
 		{
-			return $uri;
+			return $this->secure_site($uri).URL::query($this->visitor_params(), FALSE);
 		}
 	}
 }
