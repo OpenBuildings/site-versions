@@ -49,6 +49,32 @@ class Site_VersionTest extends Testcase_Extended {
 			),
 
 			array(
+				'me.shop.example.com',
+				array(
+					'meshop' => array(
+						'domain' => '/[a-z]*\.shop\.example\.com/',
+					),
+					'normal' => array(
+						'domain' => 'example.com',
+					),
+				),
+				'meshop',
+			),
+
+			array(
+				'example.com',
+				array(
+					'meshop' => array(
+						'domain' => '/[a-z]+\.shop\.example\.com/',
+					),
+					'normal' => array(
+						'domain' => 'example.com',
+					),
+				),
+				'normal',
+			),
+
+			array(
 				'test.example.com',
 				array(
 					'whiteversion' => array(
@@ -78,6 +104,25 @@ class Site_VersionTest extends Testcase_Extended {
 		$version = Site_Version::current_version_name();
 
 		$this->assertEquals($expceted, $version);
+	}
+
+	public function dataEqualsOrMatches()
+	{
+		return array(
+			array('me.example.com', 'example.com', false),
+			array('me.example.com', 'me.example.com', true),
+			array('/[a-z]+\.example\.com/', 'me.example.com', true),
+			array('/[a-z]+\.example\.com/', 'example.com', false),
+		);
+	}
+
+	/**
+	 * @dataProvider dataEqualsOrMatches
+	 * @covers ::equalsOrMatches
+	 */
+	public function testEqualsOrMatches($match, $domain, $expected)
+	{
+		$this->assertSame($expected, Site_Version::equalsOrMatches($match, $domain));
 	}
 
 	/**

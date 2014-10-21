@@ -27,18 +27,36 @@ class Kohana_Site_Version {
 	{
 		$versions = static::versions();
 
-		foreach ($versions as $version_name => $params)
-		{
+		foreach ($versions as $version_name => $params) {
 			$domains = Arr::extract($params, array('domain', 'secure_domain'));
 
-			if (array_search($_SERVER['HTTP_HOST'], $domains) !== FALSE)
-			{
+			$matchedDomains = array_filter($domains, function($domain) {
+				return self::equalsOrMatches($domain, $_SERVER['HTTP_HOST']);
+			});
+
+			if (count($matchedDomains) > 0) {
 				return $version_name;
 			}
 		}
 
 		end($versions);
+
 		return key($versions);
+	}
+
+	/**
+	 * If string is a regex, check against that regex, otherwise compare strings
+	 * @param  string $stringOrRegex
+	 * @param  string $what
+	 * @return boolean
+	 */
+	public static function equalsOrMatches($stringOrRegex, $what)
+	{
+		if ($stringOrRegex[0] === '/') {
+			return (bool) preg_match($stringOrRegex, $what);
+		} else {
+			return $stringOrRegex === $what;
+		}
 	}
 
 	/**
@@ -70,6 +88,12 @@ class Kohana_Site_Version {
 	{
 		$this->name = $name;
 		$this->config = Kohana::$config->load('site-versions.versions.'.$name);
+
+		$domain = $this->domain();
+
+		if ($domain[0] === '/' and $this->protocol() === 'http') {
+			throw new Kohana_Exception('Cannot use regex domain with secure redirect');
+		}
 	}
 
 	/**
@@ -277,7 +301,7 @@ class Kohana_Site_Version {
 
 	public function secure_uri($uri)
 	{
-		if ($_SERVER['HTTP_HOST'] !== $this->secure_domain())
+		if (false === self::equalsOrMatches($this->secure_domain(), $_SERVER['HTTP_HOST']))
 		{
 			return $this->secure_site($uri).URL::query($this->visitor_params(), FALSE);
 		}
