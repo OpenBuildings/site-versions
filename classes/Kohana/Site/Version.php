@@ -286,13 +286,13 @@ class Kohana_Site_Version {
 
 	public function secure_uri($uri)
 	{
-		if (preg_match($this->secure_domain(), $_SERVER['HTTP_HOST']))
+		if ($this->secure_domain() and ! preg_match($this->secure_domain(), $_SERVER['HTTP_HOST']))
 		{
-			return $uri;
+			return $this->secure_site($uri).URL::query($this->visitor_params(), FALSE);
 		}
 		else
 		{
-			return $this->secure_site($uri).URL::query($this->visitor_params(), FALSE);
+			return $uri;
 		}
 	}
 }
