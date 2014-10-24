@@ -29,14 +29,9 @@ class Kohana_Site_Version {
 
 		foreach ($versions as $version_name => $params)
 		{
+			$matches = $params['matches'];
 
-			$domains = array_filter(Arr::extract($params, array('domain', 'secure_domain')));
-
-			$matched_domains = array_filter($domains, function ($domain) {
-				return preg_match($domain, $_SERVER['HTTP_HOST']);
-			});
-
-			if (count($matched_domains) > 0)
+			if ($matches($_SERVER['HTTP_HOST']))
 			{
 				return $version_name;
 			}
@@ -53,7 +48,7 @@ class Kohana_Site_Version {
 	 * @param  string $name
 	 * @return Site_Version
 	 */
-	public static function instance($name = NULL)
+	public static function instance($name = NULL, $domain = NULL, $protocol = NULL)
 	{
 		if ($name === NULL)
 		{
@@ -63,7 +58,7 @@ class Kohana_Site_Version {
 		if ( ! isset(static::$instances[$name]))
 		{
 			$version_name = ($name == 'current') ? static::current_version_name() : $name;
-			static::$instances[$version_name] = static::$instances[$name] = new Site_Version($version_name);
+			static::$instances[$version_name] = static::$instances[$name] = new Site_Version($version_name, $domain, $protocol);
 		}
 
 		return static::$instances[$name];
@@ -71,11 +66,16 @@ class Kohana_Site_Version {
 
 	protected $config;
 	protected $name;
+	protected $current_domain;
+	protected $current_secure;
 
-	public function __construct($name)
+	public function __construct($name, $domain = NULL, $secure = NULL)
 	{
 		$this->name = $name;
 		$this->config = Kohana::$config->load('site-versions.versions.'.$name);
+
+		$this->current_domain = ($domain === NULL AND isset($_SERVER['HTTP_HOST'])) ? $_SERVER['HTTP_HOST'] : $domain;
+		$this->current_secure = ($secure === NULL AND isset($_SERVER['HTTPS'])) ? $_SERVER['HTTPS'] === 'on' : $secure;
 	}
 
 	/**
@@ -86,22 +86,45 @@ class Kohana_Site_Version {
 		return $this->name;
 	}
 
+	public function current_domain()
+	{
+		return $this->current_domain;
+	}
+
+	public function current_secure()
+	{
+		return $this->current_secure;
+	}
+
 	/**
 	 * Get the normal domain from config
 	 * @return string
 	 */
 	public function domain()
 	{
-		return $this->config('domain');
+		$domain = $this->config('domain', $this->config('secure_domain'));
+
+		return $domain instanceof Closure ? $domain($this) : $domain;
 	}
 
 	/**
-	 * Get the protocol (http / https), defaults to http
+	 * Get the domain used for secure connection if one is set, return normal domain if not
+	 * @return string
+	 */
+	public function secure_domain()
+	{
+		$secure_domain = $this->config('secure_domain');
+
+		return $secure_domain instanceof Closure ? $secure_domain($this) : $secure_domain;
+	}
+
+	/**
+	 * Get the protocol (http / https), defaults to https
 	 * @return string
 	 */
 	public function protocol()
 	{
-		return $this->config('protocol', 'http');
+		return $this->config('protocol', 'https');
 	}
 
 	/**
@@ -110,7 +133,28 @@ class Kohana_Site_Version {
 	 */
 	public function base()
 	{
-		return $this->protocol().'://'.$this->domain();
+		if ($this->config('domain'))
+		{
+			return $this->protocol().'://'.$this->domain();
+		}
+		else
+		{
+			return $this->secure_base();
+		}
+	}
+
+	/**
+	 * Get the normal base url
+	 * @return string
+	 */
+	public function secure_base()
+	{
+		if ( ! $this->secure_domain())
+		{
+			throw new UnexpectedValueException("Configuration option 'secure_domain' required");
+		}
+
+		return 'https://'.$this->secure_domain();
 	}
 
 	/**
@@ -125,23 +169,6 @@ class Kohana_Site_Version {
 	}
 
 	/**
-	 * Get the domain used for secure connection if one is set, return normal domain if not
-	 * @return string
-	 */
-	public function secure_domain()
-	{
-		return $this->config('secure_domain');
-	}
-
-	/**
-	 * @return string
-	 */
-	public function secure_domain_replace()
-	{
-		return $this->config('secure_domain_replace');
-	}
-
-	/**
 	 * Get the url with the secure base domain.
 	 * E.g. site(/test/url) -> https://example.com/test/url
 	 * @param  string $url
@@ -149,11 +176,7 @@ class Kohana_Site_Version {
 	 */
 	public function secure_site($url)
 	{
-		$current_domain = $_SERVER['HTTP_HOST'];
-
-		$secure_domain = preg_replace($this->domain(), $this->secure_domain_replace(), $current_domain);
-
-		return "https://{$secure_domain}/".ltrim($url, '/');
+		return $this->secure_base().'/'.ltrim($url, '/');
 	}
 
 	/**
@@ -286,13 +309,13 @@ class Kohana_Site_Version {
 
 	public function secure_uri($uri)
 	{
-		if ($this->secure_domain() and ! preg_match($this->secure_domain(), $_SERVER['HTTP_HOST']))
+		if ($this->current_secure())
 		{
-			return $this->secure_site($uri).URL::query($this->visitor_params(), FALSE);
+			return $uri;
 		}
 		else
 		{
-			return $uri;
+			return $this->secure_site($uri).URL::query($this->visitor_params(), FALSE);
 		}
 	}
 }
