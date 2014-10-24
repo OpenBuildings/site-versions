@@ -75,7 +75,7 @@ class Kohana_Site_Version {
 		$this->config = Kohana::$config->load('site-versions.versions.'.$name);
 
 		$this->current_domain = ($domain === NULL AND isset($_SERVER['HTTP_HOST'])) ? $_SERVER['HTTP_HOST'] : $domain;
-		$this->current_secure = ($secure === NULL AND isset($_SERVER['HTTPS'])) ? $_SERVER['HTTPS'] === 'on' : $secure;
+		$this->current_secure = ($secure === NULL AND isset($_SERVER['HTTPS'])) ? TRUE : $secure;
 	}
 
 	/**
