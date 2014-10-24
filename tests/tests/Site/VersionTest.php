@@ -13,10 +13,14 @@ class Site_VersionTest extends Testcase_Extended {
 				'example.com',
 				array(
 					'normal' => array(
-						'domain' => '/example\.com/',
+						'matches' => function($domain) {
+							return preg_match('/example\.com/', $domain);
+						}
 					),
 					'whiteversion' => array(
-						'domain' => '/whiteversion\.example\.com/',
+						'matches' => function($domain) {
+							return preg_match('/whiteversion\.example\.com/', $domain);
+						}
 					),
 				),
 				'normal',
@@ -26,10 +30,14 @@ class Site_VersionTest extends Testcase_Extended {
 				'whiteversion.example.com',
 				array(
 					'whiteversion' => array(
-						'domain' => '/whiteversion\.example\.com/',
+						'matches' => function($domain) {
+							return $domain == 'whiteversion.example.com';
+						}
 					),
 					'normal' => array(
-						'domain' => '/example\.com/',
+						'matches' => function($domain) {
+							return $domain == 'example.com';
+						}
 					),
 				),
 				'whiteversion',
@@ -39,10 +47,14 @@ class Site_VersionTest extends Testcase_Extended {
 				'test.example.com',
 				array(
 					'whiteversion' => array(
-						'domain' => '/whiteversion\.example\.com/',
+						'matches' => function($domain) {
+							return $domain == 'whiteversion.example.com';
+						}
 					),
 					'normal' => array(
-						'domain' => '/example\.com/',
+						'matches' => function($domain) {
+							return $domain == 'example.com';
+						}
 					),
 				),
 				'normal',
@@ -52,40 +64,17 @@ class Site_VersionTest extends Testcase_Extended {
 				'me.shop.example.com',
 				array(
 					'meshop' => array(
-						'domain' => '/[a-z]*\.shop\.example\.com/',
+						'matches' => function($domain) {
+							return preg_match('/[a-z]*\.shop\.example\.com/', $domain);
+						}
 					),
 					'normal' => array(
-						'domain' => '/example\.com/',
+						'matches' => function($domain) {
+							return $domain == 'example.com';
+						}
 					),
 				),
 				'meshop',
-			),
-
-			array(
-				'example.com',
-				array(
-					'meshop' => array(
-						'domain' => '/[a-z]+\.shop\.example\.com/',
-					),
-					'normal' => array(
-						'domain' => '/example\.com/',
-					),
-				),
-				'normal',
-			),
-
-			array(
-				'test.example.com',
-				array(
-					'whiteversion' => array(
-						'domain' => '/whiteversion\.example\.com/',
-						'secure_domain' => '/test\.example\.com/',
-					),
-					'normal' => array(
-						'domains' => '/example\.com/',
-					),
-				),
-				'whiteversion',
 			),
 		);
 	}
@@ -130,9 +119,16 @@ class Site_VersionTest extends Testcase_Extended {
 	 */
 	public function test_instance()
 	{
+		$matches = function ($domain) {
+			return $domain == 'example.com';
+		};
+
 		$this->env->backup_and_set(array(
 			'site-versions.versions' => array(
-				'test' => array('config' => 'test', 'domain' => '/example\.com/'),
+				'test' => array(
+					'config' => 'test',
+					'matches' => $matches
+				),
 				'test2' => array('config2'),
 			),
 			'HTTP_HOST' => 'example.com',
@@ -141,8 +137,9 @@ class Site_VersionTest extends Testcase_Extended {
 		$instance = Site_Version::instance();
 
 		$this->assertInstanceOf('Site_Version', $instance);
-		$this->assertEquals(array('config' => 'test', 'domain' => '/example\.com/'), $instance->config());
+		$this->assertEquals(array('config' => 'test', 'matches' => $matches), $instance->config());
 		$this->assertEquals('test', $instance->name());
+		$this->assertEquals('example.com', $instance->current_domain());
 
 		$instance2 = Site_Version::instance();
 
@@ -152,11 +149,12 @@ class Site_VersionTest extends Testcase_Extended {
 
 		$this->assertSame($instance, $instance3);
 
-		$instance4 = Site_Version::instance('test2');
+		$instance4 = Site_Version::instance('test2', 'new.example.com');
 
 		$this->assertInstanceOf('Site_Version', $instance4);
 		$this->assertEquals(array('config2'), $instance4->config());
 		$this->assertEquals('test2', $instance4->name());
+		$this->assertEquals('new.example.com', $instance4->current_domain());
 	}
 
 	/**
@@ -316,12 +314,58 @@ class Site_VersionTest extends Testcase_Extended {
 		$this->assertEquals($expceted, $domain);
 	}
 
+	/**
+	 * @covers ::domain
+	 */
+	public function test_domain_no_insecure()
+	{
+		$this->env->backup_and_set(array(
+			'site-versions.versions' => array(
+				'test' => array(
+					'secure_domain' => 'test.example.com',
+				),
+			),
+		));
+
+		$version = new Site_Version('test');
+
+		$domain = $version->domain();
+
+		$expceted = 'test.example.com';
+
+		$this->assertEquals($expceted, $domain);
+	}
+
+
+	/**
+	 * @covers ::domain
+	 */
+	public function test_domain_closure()
+	{
+		$this->env->backup_and_set(array(
+			'site-versions.versions' => array(
+				'test' => array(
+					'domain' => function (Site_Version $version) {
+						return 'test!';
+					}
+				),
+			),
+		));
+
+		$version = new Site_Version('test');
+
+		$domain = $version->domain();
+
+		$this->assertEquals('test!', $domain);
+	}
+
+
 	public function data_protocol()
 	{
 		return array(
 			array(array('protocol' => 'https'), 'https'),
 			array(array('protocol' => 'http'), 'http'),
-			array(array(), 'http'),
+			array(array(), 'https'),
 		);
 	}
 
@@ -391,7 +435,8 @@ class Site_VersionTest extends Testcase_Extended {
 	public function data_base()
 	{
 		return array(
-			array(array('protocol' => 'https', 'domain' => 'example.com'), 'https://example.com'),
+			array(array('domain' => 'example.com'), 'https://example.com'),
+			array(array('secure_domain' => 'example.com'), 'https://example.com'),
 			array(array('protocol' => 'http', 'domain' => 'test.example.com'), 'http://test.example.com'),
 		);
 	}
@@ -420,11 +465,13 @@ class Site_VersionTest extends Testcase_Extended {
 		return array(
 			array(
 				'best.example.com',
+				null,
 				'/test',
 				'https://best.secure.example.com/test?_SV_VISITOR_TOKEN=53a0216a7ba6f',
 			),
 			array(
 				'best.secure.example.com',
+				'on',
 				'/test',
 				'/test',
 			),
@@ -435,18 +482,17 @@ class Site_VersionTest extends Testcase_Extended {
 	 * @dataProvider data_secure_uri
 	 * @covers ::secure_uri
 	 */
-	public function test_secure_uri($domain,$uri, $expected)
+	public function test_secure_uri($domain, $https, $uri, $expected)
 	{
 		$this->env->backup_and_set(array(
 			'site-versions.versions' => array(
 				'test' => array(
-					'protocol' => 'https',
-					'domain' => '/([a-z]+)\.example\.com/',
-					'secure_domain' => '/([a-z]+)\.secure\.example\.com/',
-					'secure_domain_replace' => '$1.secure.example.com',
+					'domain' => 'best.example.com',
+					'secure_domain' => 'best.secure.example.com',
 				),
 			),
 			'HTTP_HOST' => $domain,
+			'HTTPS' => $https,
 		));
 
 		$visitor = Model_Visitor::load();
@@ -470,9 +516,8 @@ class Site_VersionTest extends Testcase_Extended {
 			'HTTP_HOST' => 'we-do-wood.example.com',
 			'site-versions.versions' => array(
 				'test' => array(
-					'domain' => '/([a-z\-]+)\.example\.com/',
-					'secure_domain' => '/([a-z\-]+)\.secure.example\.com/',
-					'secure_domain_replace' => '$1.secure.example.com',
+					'domain' => 'best.example.com',
+					'secure_domain' => 'best.secure.example.com',
 				),
 			),
 		));
