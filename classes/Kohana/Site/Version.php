@@ -149,6 +149,11 @@ class Kohana_Site_Version {
 	 */
 	public function secure_base()
 	{
+		if ( ! $this->secure_domain())
+		{
+			throw new InvalidArgumentException("Configuration option 'secure_domain' required");
+		}
+
 		return 'https://'.$this->secure_domain();
 	}
 
