@@ -507,13 +507,10 @@ class Site_VersionTest extends Testcase_Extended {
 
 	public function test_redirect_to_secure()
 	{
-		if ( ! Request::initial())
-		{
-			Request::factory();
-		}
-
 		$this->env->backup_and_set(array(
 			'HTTP_HOST' => 'we-do-wood.example.com',
+			'Request::$initial' => null,
+			'Site_Version::$instances' => null,
 			'site-versions.versions' => array(
 				'test' => array(
 					'domain' => 'best.example.com',
@@ -521,6 +518,8 @@ class Site_VersionTest extends Testcase_Extended {
 				),
 			),
 		));
+
+		Request::factory('http://we-do-wood.example.com');
 
 		$previous_secure = Request::initial()->secure() ?: FALSE;
 

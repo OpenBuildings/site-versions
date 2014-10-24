@@ -151,7 +151,7 @@ class Kohana_Site_Version {
 	{
 		if ( ! $this->secure_domain())
 		{
-			throw new InvalidArgumentException("Configuration option 'secure_domain' required");
+			throw new UnexpectedValueException("Configuration option 'secure_domain' required");
 		}
 
 		return 'https://'.$this->secure_domain();
