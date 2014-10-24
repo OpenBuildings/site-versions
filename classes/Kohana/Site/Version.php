@@ -48,7 +48,7 @@ class Kohana_Site_Version {
 	 * @param  string $name
 	 * @return Site_Version
 	 */
-	public static function instance($name = NULL, $domain = NULL)
+	public static function instance($name = NULL, $domain = NULL, $protocol = NULL)
 	{
 		if ($name === NULL)
 		{
@@ -58,7 +58,7 @@ class Kohana_Site_Version {
 		if ( ! isset(static::$instances[$name]))
 		{
 			$version_name = ($name == 'current') ? static::current_version_name() : $name;
-			static::$instances[$version_name] = static::$instances[$name] = new Site_Version($version_name, $domain);
+			static::$instances[$version_name] = static::$instances[$name] = new Site_Version($version_name, $domain, $protocol);
 		}
 
 		return static::$instances[$name];
@@ -67,12 +67,15 @@ class Kohana_Site_Version {
 	protected $config;
 	protected $name;
 	protected $current_domain;
+	protected $current_secure;
 
-	public function __construct($name, $domain = NULL)
+	public function __construct($name, $domain = NULL, $secure = NULL)
 	{
 		$this->name = $name;
 		$this->config = Kohana::$config->load('site-versions.versions.'.$name);
-		$this->current_domain = $domain ?: $_SERVER['HTTP_HOST'];
+
+		$this->current_domain = ($domain === NULL AND isset($_SERVER['HTTP_HOST'])) ? $_SERVER['HTTP_HOST'] : $domain;
+		$this->current_secure = ($secure === NULL AND isset($_SERVER['HTTPS'])) ? $_SERVER['HTTPS'] === 'on' : $secure;
 	}
 
 	/**
@@ -86,6 +89,11 @@ class Kohana_Site_Version {
 	public function current_domain()
 	{
 		return $this->current_domain;
+	}
+
+	public function current_secure()
+	{
+		return $this->current_secure;
 	}
 
 	/**
@@ -125,7 +133,23 @@ class Kohana_Site_Version {
 	 */
 	public function base()
 	{
-		return $this->protocol().'://'.$this->domain();
+		if ($this->config('domain'))
+		{
+			return $this->protocol().'://'.$this->domain();
+		}
+		else
+		{
+			return $this->secure_base();
+		}
+	}
+
+	/**
+	 * Get the normal base url
+	 * @return string
+	 */
+	public function secure_base()
+	{
+		return 'https://'.$this->secure_domain();
 	}
 
 	/**
@@ -280,6 +304,13 @@ class Kohana_Site_Version {
 
 	public function secure_uri($uri)
 	{
-		return $this->secure_site($uri).URL::query($this->visitor_params(), FALSE);
+		if ($this->current_secure())
+		{
+			return $uri;
+		}
+		else
+		{
+			return $this->secure_site($uri).URL::query($this->visitor_params(), FALSE);
+		}
 	}
 }
