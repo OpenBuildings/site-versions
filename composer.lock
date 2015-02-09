@@ -4,28 +4,29 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3b1abc6f4af42aa80a6eeea1474090f7",
+    "hash": "426c09e5b5abff98dc47bb3409032f41",
     "packages": [
         {
             "name": "composer/installers",
-            "version": "v1.0.13",
+            "version": "v1.0.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "26d37e307f9aa6e2e81806a6525666f8ab5ba0ff"
+                "reference": "1bff8aa77a18f3616f468ed8000cf86a5725bac3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/26d37e307f9aa6e2e81806a6525666f8ab5ba0ff",
-                "reference": "26d37e307f9aa6e2e81806a6525666f8ab5ba0ff",
+                "url": "https://api.github.com/repos/composer/installers/zipball/1bff8aa77a18f3616f468ed8000cf86a5725bac3",
+                "reference": "1bff8aa77a18f3616f468ed8000cf86a5725bac3",
                 "shasum": ""
             },
             "replace": {
+                "roundcube/plugin-installer": "*",
                 "shama/baton": "*"
             },
             "require-dev": {
                 "composer/composer": "1.0.*@dev",
-                "phpunit/phpunit": "3.7.*"
+                "phpunit/phpunit": "4.1.*"
             },
             "type": "composer-installer",
             "extra": {
@@ -47,27 +48,33 @@
                 {
                     "name": "Kyle Robinson Young",
                     "email": "kyle@dontkry.com",
-                    "homepage": "https://github.com/shama",
-                    "role": "Developer"
+                    "homepage": "https://github.com/shama"
                 }
             ],
             "description": "A multi-framework Composer library installer",
             "homepage": "http://composer.github.com/installers/",
             "keywords": [
                 "Craft",
+                "Dolibarr",
                 "Hurad",
                 "MODX Evo",
                 "OXID",
+                "SMF",
+                "Thelia",
                 "WolfCMS",
                 "agl",
                 "annotatecms",
+                "bitrix",
                 "cakephp",
+                "chef",
                 "codeigniter",
                 "concrete5",
                 "croogo",
+                "dokuwiki",
                 "drupal",
                 "elgg",
                 "fuelphp",
+                "grav",
                 "installer",
                 "joomla",
                 "kohana",
@@ -77,9 +84,12 @@
                 "mako",
                 "mediawiki",
                 "modulework",
+                "moodle",
                 "phpbb",
                 "piwik",
                 "ppi",
+                "puppet",
+                "roundcube",
                 "shopware",
                 "silverstripe",
                 "symfony",
@@ -88,7 +98,7 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2014-04-09 16:12:43"
+            "time": "2015-01-11 03:51:11"
         },
         {
             "name": "desarrolla2/cache",
@@ -181,16 +191,16 @@
         },
         {
             "name": "openbuildings/jam",
-            "version": "0.4.62",
+            "version": "0.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/OpenBuildings/jam.git",
-                "reference": "628f498636e3251e8839863ae68624fc30dd8320"
+                "reference": "6dba32cc578cf58d22dfd9916ac33ae794194021"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/OpenBuildings/jam/zipball/628f498636e3251e8839863ae68624fc30dd8320",
-                "reference": "628f498636e3251e8839863ae68624fc30dd8320",
+                "url": "https://api.github.com/repos/OpenBuildings/jam/zipball/6dba32cc578cf58d22dfd9916ac33ae794194021",
+                "reference": "6dba32cc578cf58d22dfd9916ac33ae794194021",
                 "shasum": ""
             },
             "require": {
@@ -230,25 +240,25 @@
                 "upload",
                 "validation"
             ],
-            "time": "2014-12-11 14:55:07"
+            "time": "2015-02-09 14:58:09"
         },
         {
             "name": "openbuildings/jam-auth",
-            "version": "0.3.0",
+            "version": "0.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/OpenBuildings/jam-auth.git",
-                "reference": "e9bb8bd25f03d39f3247c9bc7e9eb4390c0224b9"
+                "reference": "e991a02c75755b4e30bddc843a3dad6c63219f21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/OpenBuildings/jam-auth/zipball/e9bb8bd25f03d39f3247c9bc7e9eb4390c0224b9",
-                "reference": "e9bb8bd25f03d39f3247c9bc7e9eb4390c0224b9",
+                "url": "https://api.github.com/repos/OpenBuildings/jam-auth/zipball/e991a02c75755b4e30bddc843a3dad6c63219f21",
+                "reference": "e991a02c75755b4e30bddc843a3dad6c63219f21",
                 "shasum": ""
             },
             "require": {
                 "composer/installers": "*",
-                "openbuildings/jam": "0.4.*",
+                "openbuildings/jam": "~0.5.0",
                 "php": ">=5.3.0"
             },
             "require-dev": {
@@ -277,25 +287,25 @@
                 "kohana",
                 "login"
             ],
-            "time": "2014-12-09 15:27:57"
+            "time": "2015-02-09 16:24:06"
         },
         {
             "name": "openbuildings/jam-closuretable",
-            "version": "0.1.1",
+            "version": "0.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/OpenBuildings/jam-closuretable.git",
-                "reference": "8f7179487394d3beff5b74ca3279ed6d135d77f3"
+                "reference": "9cefdc810e6a1e3dbc3322780394102b84e65918"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/OpenBuildings/jam-closuretable/zipball/8f7179487394d3beff5b74ca3279ed6d135d77f3",
-                "reference": "8f7179487394d3beff5b74ca3279ed6d135d77f3",
+                "url": "https://api.github.com/repos/OpenBuildings/jam-closuretable/zipball/9cefdc810e6a1e3dbc3322780394102b84e65918",
+                "reference": "9cefdc810e6a1e3dbc3322780394102b84e65918",
                 "shasum": ""
             },
             "require": {
                 "composer/installers": "*",
-                "openbuildings/jam": "0.4.*",
+                "openbuildings/jam": "~0.5.0",
                 "php": ">=5.3.0"
             },
             "require-dev": {
@@ -310,7 +320,6 @@
                 {
                     "name": "Ivan Kerin",
                     "email": "ivan@openbuildings.com",
-                    "homepage": "https://github.com/OpenBuildings/jam",
                     "role": "Author"
                 }
             ],
@@ -324,7 +333,7 @@
                 "structure",
                 "tree"
             ],
-            "time": "2014-04-09 10:14:18"
+            "time": "2015-02-09 16:09:16"
         },
         {
             "name": "openbuildings/jam-locations",
@@ -376,22 +385,22 @@
         },
         {
             "name": "openbuildings/jam-monetary",
-            "version": "0.1.18",
+            "version": "0.1.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/OpenBuildings/jam-monetary.git",
-                "reference": "170df0dbfe292ad1db598473dbb061857f5a800b"
+                "reference": "b431213561995a67c8a08f2fcf543db9d2585311"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/OpenBuildings/jam-monetary/zipball/170df0dbfe292ad1db598473dbb061857f5a800b",
-                "reference": "170df0dbfe292ad1db598473dbb061857f5a800b",
+                "url": "https://api.github.com/repos/OpenBuildings/jam-monetary/zipball/b431213561995a67c8a08f2fcf543db9d2585311",
+                "reference": "b431213561995a67c8a08f2fcf543db9d2585311",
                 "shasum": ""
             },
             "require": {
                 "composer/installers": "*",
-                "openbuildings/jam": "0.4.*",
-                "openbuildings/monetary": "0.4.*",
+                "openbuildings/jam": "~0.5.0",
+                "openbuildings/monetary": "~0.4.1",
                 "php": ">=5.3.0"
             },
             "require-dev": {
@@ -406,7 +415,6 @@
                 {
                     "name": "Ivan Kerin",
                     "email": "ivan@openbuildings.com",
-                    "homepage": "https://github.com/OpenBuildings/jam",
                     "role": "Author"
                 }
             ],
@@ -420,7 +428,7 @@
                 "money",
                 "price"
             ],
-            "time": "2014-01-06 15:00:53"
+            "time": "2015-02-09 16:48:03"
         },
         {
             "name": "openbuildings/monetary",
@@ -613,6 +621,7 @@
     "minimum-stability": "stable",
     "stability-flags": [],
     "prefer-stable": false,
+    "prefer-lowest": false,
     "platform": {
         "php": ">=5.3.0"
     },
