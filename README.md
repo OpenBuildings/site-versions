@@ -1,4 +1,4 @@
-# Jam Generated Feed Module
+# Kohana site versions
 
 [![Build Status](https://travis-ci.org/OpenBuildings/site-versions.png?branch=master)](https://travis-ci.org/OpenBuildings/site-versions)
 [![Latest Stable Version](https://poser.pugx.org/openbuildings/site-versions/v/stable.png)](https://packagist.org/packages/openbuildings/site-versions)
